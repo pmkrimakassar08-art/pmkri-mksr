@@ -1,0 +1,1766 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #ffffff;
+  color: #222;
+}
+
+
+/* NAVBAR */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 8%;
+
+  background: #8b0000;
+  color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.logo span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+
+/* HERO */
+
+.hero {
+  min-height: 85vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 50px 20px;
+
+ background:
+  linear-gradient(
+    rgba(80, 0, 0, 0.25),
+    rgba(80, 0, 0, 0.25)
+  ),
+  url("background.png.png");
+
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.hero-content {
+  max-width: 850px;
+  color: white;
+}
+
+.tagline {
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  margin-bottom: 5px;
+}
+
+.hero h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+}
+
+.button {
+  display: inline-block;
+
+  margin-top: 30px;
+  padding: 13px 28px;
+
+  background: white;
+  color: #8b0000;
+
+  text-decoration: none;
+  font-weight: bold;
+
+  border-radius: 6px;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+
+/* SECTION */
+
+.section {
+  padding: 80px 10%;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 35px;
+  margin-bottom: 25px;
+  color: #8b0000;
+}
+
+.section p {
+  max-width: 850px;
+  margin: 10px auto;
+}
+
+.gray {
+  background: #f5f5f5;
+}
+
+
+/* CARD */
+
+.cards {
+  margin-top: 40px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+.card {
+  background: white;
+
+  padding: 30px 20px;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  margin-bottom: 15px;
+  color: #8b0000;
+}
+
+
+/* FOOTER */
+
+footer {
+  padding: 25px;
+
+  text-align: center;
+
+  background: #600000;
+  color: white;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero h2 {
+    font-size: 23px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+}
+/* kode CSS lama kamu di atas */
+
+
+/* =========================
+   KONTAK
+========================= */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.contact-card {
+  display: block;
+  background: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #222;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+
+  transition: 0.3s;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+}
+
+.alamat-box {
+  margin-top: 30px;
+  padding: 25px;
+  background: #8b0000;
+  color: white;
+  border-radius: 12px;
+}
+
+.form-kontak {
+  margin-top: 30px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+}
+/* =========================
+   TOMBOL KONTAK MODERN
+========================= */
+
+.alamat-box button,
+.form-kontak button {
+  border: none;
+  border-radius: 10px;
+
+  padding: 13px 24px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+
+/* Tombol Salin Alamat */
+
+.alamat-box button {
+  background: white;
+  color: #8b0000;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.alamat-box button:hover {
+  background: #f5f5f5;
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.20);
+}
+
+
+/* Tombol WhatsApp */
+
+.form-kontak button {
+  background: #25D366;
+  color: white;
+
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.25);
+}
+
+.form-kontak button:hover {
+  background: #1ebe5d;
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
+}
+
+.form-kontak button:active,
+.alamat-box button:active {
+  transform: scale(0.97);
+}
+/* Tombol kecil dan modern */
+
+.alamat-box button,
+.form-kontak button {
+  border: none;
+  border-radius: 999px;
+
+  padding: 8px 16px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+
+/* Tombol Salin Alamat */
+
+.alamat-box button {
+  background: #ffffff;
+  color: #8b0000;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.alamat-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+}
+
+
+/* Tombol WhatsApp */
+
+.form-kontak button {
+  background: #25D366;
+  color: white;
+
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+}
+
+.form-kontak button:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
+}
+
+.alamat-box button:active,
+.form-kontak button:active {
+  transform: scale(0.96);
+}
+/* ===== KARTU KONTAK LEBIH KECIL & BERWARNA ===== */
+
+.contact-grid {
+  max-width: 900px;
+  margin: 25px auto;
+  gap: 16px;
+}
+
+.contact-card {
+  padding: 18px 15px;
+  border-radius: 15px;
+  min-height: 120px;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+  transition: 0.25s ease;
+}
+
+/* WhatsApp */
+.contact-card:nth-child(1) {
+  background: #e9f9ef;
+  border: 1px solid #25D366;
+}
+
+.contact-card:nth-child(1) h3 {
+  color: #159447;
+}
+
+/* Instagram */
+.contact-card:nth-child(2) {
+  background: #f8eaf5;
+  border: 1px solid #c13584;
+}
+
+.contact-card:nth-child(2) h3 {
+  color: #c13584;
+}
+
+/* Email */
+.contact-card:nth-child(3) {
+  background: #eaf3ff;
+  border: 1px solid #4285f4;
+}
+
+.contact-card:nth-child(3) h3 {
+  color: #3169c6;
+}
+
+/* Tulisan */
+.contact-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.contact-card p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Saat mouse diarahkan */
+.contact-card:hover {
+  transform: translateY(-4px) scale(1.02);
+
+  box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+}
+/* ==================================================
+   TEMA PMKRI - MARUN & KUNING EMAS
+================================================== */
+
+:root {
+  --marun: #8b0000;
+  --marun-gelap: #570000;
+  --kuning: #f5c518;
+  --kuning-muda: #fff4b8;
+  --putih: #ffffff;
+}
+
+
+/* ==============================
+   SEMUA SECTION
+============================== */
+
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.section h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+
+/* garis kuning di bawah judul */
+
+.section h2::after {
+  content: "";
+  display: block;
+
+  width: 65px;
+  height: 4px;
+
+  background: linear-gradient(
+    90deg,
+    var(--marun),
+    var(--kuning)
+  );
+
+  margin: 12px auto 0;
+
+  border-radius: 10px;
+}
+
+
+/* ==============================
+   TENTANG
+============================== */
+
+#tentang {
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #fff7cf 50%,
+      #ffffff 100%
+    );
+
+  color: #222;
+}
+
+#tentang h2 {
+  color: var(--marun);
+}
+
+#tentang p {
+  background: rgba(255,255,255,0.85);
+
+  max-width: 850px;
+
+  padding: 18px 25px;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.07);
+
+  transition: 0.3s ease;
+}
+
+#tentang p:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 12px 30px rgba(139,0,0,0.15);
+}
+
+
+/* ==============================
+   KEGIATAN
+============================== */
+
+#kegiatan {
+  background:
+    linear-gradient(
+      135deg,
+      #720000,
+      #9e0000 55%,
+      #d5a900
+    );
+
+  color: white;
+}
+
+#kegiatan h2 {
+  color: white;
+}
+
+#kegiatan .card {
+  background: rgba(255,255,255,0.96);
+
+  border-bottom:
+    5px solid var(--kuning);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+#kegiatan .card h3 {
+  color: var(--marun);
+}
+
+#kegiatan .card p {
+  color: #444;
+}
+
+#kegiatan .card:hover {
+  transform:
+    translateY(-10px)
+    scale(1.02);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.25);
+}
+
+
+/* ==============================
+   PENGURUS
+============================== */
+
+#pengurus {
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf4,
+      #fff1a8,
+      #ffffff
+    );
+}
+
+#pengurus h2 {
+  color: var(--marun);
+}
+
+#pengurus .card {
+  position: relative;
+
+  background: white;
+
+  border-radius: 18px;
+
+  border-top:
+    5px solid var(--marun);
+
+  overflow: hidden;
+
+  transition: all 0.3s ease;
+}
+
+
+/* efek kuning saat hover */
+
+#pengurus .card::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139,0,0,0.05),
+      rgba(245,197,24,0.25)
+    );
+
+  transition: 0.3s;
+}
+
+#pengurus .card:hover::before {
+  height: 100%;
+}
+
+#pengurus .card:hover {
+  transform:
+    translateY(-8px);
+
+  border-top-color:
+    var(--kuning);
+
+  box-shadow:
+    0 15px 35px rgba(139,0,0,0.18);
+}
+
+#pengurus .card h3,
+#pengurus .card p {
+  position: relative;
+  z-index: 2;
+}
+
+#pengurus .card h3 {
+  color: var(--marun);
+}
+
+
+/* ==============================
+   KONTAK
+============================== */
+
+#kontak {
+  background:
+    linear-gradient(
+      135deg,
+      #620000,
+      #930000 60%,
+      #c79d00
+    );
+}
+
+#kontak > h2 {
+  color: white;
+}
+
+
+/* kartu kontak */
+
+#kontak .contact-card {
+  border: 2px solid transparent;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border 0.3s ease;
+}
+
+#kontak .contact-card:hover {
+  transform:
+    translateY(-7px)
+    scale(1.03);
+
+  border-color:
+    var(--kuning);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.22);
+}
+
+
+/* alamat */
+
+#kontak .alamat-box {
+  background:
+    linear-gradient(
+      90deg,
+      #630000,
+      #a10000
+    );
+
+  border:
+    2px solid rgba(245,197,24,0.7);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.18);
+}
+
+
+/* form */
+
+#kontak .form-kontak {
+  background:
+    rgba(255,255,255,0.96);
+
+  border:
+    2px solid var(--kuning);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.18);
+}
+
+
+/* ==============================
+   NAVBAR
+============================== */
+
+.navbar {
+  background:
+    linear-gradient(
+      90deg,
+      #650000,
+      #990000
+    );
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,0.2);
+}
+
+.nav-links a {
+  position: relative;
+
+  transition:
+    color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -7px;
+
+  width: 0;
+  height: 3px;
+
+  background:
+    var(--kuning);
+
+  transform:
+    translateX(-50%);
+
+  transition:
+    width 0.3s ease;
+
+  border-radius: 10px;
+}
+
+.nav-links a:hover {
+  color:
+    var(--kuning);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer {
+  background:
+    linear-gradient(
+      90deg,
+      #4c0000,
+      #8b0000
+    );
+
+  border-top:
+    4px solid var(--kuning);
+
+  color: white;
+}
+
+
+/* ==============================
+   TAMPILAN HP
+============================== */
+
+@media (max-width: 768px) {
+
+  .section h2 {
+    font-size: 29px;
+  }
+
+  #pengurus .card,
+  #kegiatan .card {
+    margin-bottom: 10px;
+  }
+
+}
+/* ===== KARTU PENGURUS LEBIH KEREN ===== */
+
+#pengurus .card {
+  background:
+    linear-gradient(
+      145deg,
+      #fffdf7 0%,
+      #fff5c7 100%
+    );
+
+  border-top: 5px solid #8b0000;
+
+  box-shadow:
+    0 8px 22px rgba(139, 0, 0, 0.10);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+
+/* Saat mouse diarahkan */
+
+#pengurus .card:hover {
+  background:
+    linear-gradient(
+      145deg,
+      #fff8d8 0%,
+      #f7d95c 100%
+    );
+
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 14px 35px rgba(139, 0, 0, 0.20);
+
+  border-top-color: #d4a500;
+}
+
+
+/* Judul jabatan */
+
+#pengurus .card h3 {
+  color: #8b0000;
+  font-weight: 800;
+}
+
+
+/* Nama pengurus */
+
+#pengurus .card p {
+  color: #2b2b2b;
+  font-weight: 500;
+}
+
+
+/* Sedikit efek saat diklik */
+
+#pengurus .card:active {
+  transform: scale(0.98);
+}
+/* =====================================
+   ANIMASI GLOBAL WEBSITE
+===================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Sedikit jeda antar elemen */
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+
+
+/* Efek kartu */
+
+.card,
+.contact-card,
+.tentang-content,
+.alamat-box,
+.form-kontak {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card:hover,
+.contact-card:hover {
+  transform: translateY(-7px) scale(1.02);
+
+  box-shadow:
+    0 15px 35px rgba(139, 0, 0, 0.18);
+}
+
+
+/* Tombol */
+
+button,
+.button {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+button:hover,
+.button:hover {
+  transform: translateY(-3px);
+}
+
+button:active,
+.button:active {
+  transform: scale(0.96);
+}
+
+
+/* Logo */
+
+.logo img {
+  transition: transform 0.4s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.08) rotate(3deg);
+}
+
+
+/* Menu navbar */
+
+.nav-links a {
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.nav-links a:hover {
+  transform: translateY(-2px);
+}
+/* ===== ISI TENTANG PMKRI ===== */
+
+.tentang-content h4 {
+  color: #8b0000;
+  font-size: 20px;
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+.tentang-list {
+  padding-left: 25px;
+  line-height: 1.9;
+}
+
+.visi-box,
+.misi-box {
+  margin: 25px 0;
+  padding: 25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b0000,
+      #a80000
+    );
+
+  color: white;
+
+  border-left: 6px solid #f5c518;
+  border-radius: 14px;
+
+  text-align: center;
+
+  box-shadow:
+    0 8px 25px rgba(139, 0, 0, 0.18);
+}
+
+.visi-box p,
+.misi-box p {
+  color: white;
+  margin: 0;
+}
+
+.nilai-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+
+  margin-top: 20px;
+}
+
+.nilai-card {
+  padding: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #fff3b5
+    );
+
+  border-radius: 15px;
+
+  border-top:
+    4px solid #8b0000;
+
+  box-shadow:
+    0 7px 20px rgba(0,0,0,0.08);
+
+  transition:
+    0.3s ease;
+}
+
+.nilai-card:hover {
+  transform:
+    translateY(-7px);
+
+  border-top-color:
+    #f5c518;
+
+  box-shadow:
+    0 14px 30px rgba(139,0,0,0.16);
+}
+
+.nilai-card h5 {
+  color: #8b0000;
+
+  font-size: 17px;
+
+  margin-bottom: 10px;
+}
+
+.nilai-card p {
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+
+  .nilai-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+/* ==================================
+   TAB SEJARAH - VISI - MISI
+================================== */
+
+.tentang-menu {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.tentang-btn {
+  border: none;
+  padding: 10px 22px;
+
+  border-radius: 30px;
+
+  background: linear-gradient(
+    135deg,
+    #fff7c2,
+    #f3c83f
+  );
+
+  color: #7a0000;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+
+  transition: 0.3s ease;
+}
+
+.tentang-btn:hover {
+  transform: translateY(-3px);
+
+  background: linear-gradient(
+    135deg,
+    #f5d94f,
+    #fff1a0
+  );
+}
+
+.tentang-btn.active {
+  background: linear-gradient(
+    135deg,
+    #750000,
+    #a00000,
+    #d7aa00
+  );
+
+  color: white;
+
+  box-shadow:
+    0 7px 20px rgba(139,0,0,0.25);
+}
+
+
+/* SEMUA ISI DISEMBUNYIKAN */
+
+.tentang-content {
+  display: none;
+
+  margin-top: 25px;
+  padding: 35px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    145deg,
+    #ffffff,
+    #fff8cc,
+    #ffe987
+  );
+
+  border-left: 6px solid #8b0000;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.10);
+}
+
+
+/* HANYA YANG ACTIVE DITAMPILKAN */
+
+.tentang-content.active {
+  display: block;
+
+  animation: tampilTab 0.45s ease;
+}
+
+@keyframes tampilTab {
+
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =========================
+   VISI & MISI LEBIH TERANG
+========================= */
+
+.visi-box,
+.misi-box {
+  background:
+    linear-gradient(
+      135deg,
+      #8b0000 0%,
+      #b00000 55%,
+      #d49b00 100%
+    );
+
+  border: 2px solid #f5c518;
+
+  padding: 28px;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 30px rgba(139, 0, 0, 0.22);
+}
+
+
+/* Kotak teks di dalamnya */
+
+.visi-box p,
+.misi-box p {
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf2,
+      #fff3b0
+    );
+
+  color: #7a0000;
+
+  padding: 22px 28px;
+
+  border-radius: 14px;
+
+  font-size: 19px;
+  font-weight: 800;
+
+  line-height: 1.7;
+
+  text-align: center;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(139, 0, 0, 0.08);
+
+  margin: 0;
+}
+
+
+/* Judul Visi / Misi */
+
+.tentang-content h3 {
+  color: #8b0000;
+
+  font-size: 28px;
+  font-weight: 800;
+
+  text-align: center;
+
+  margin-bottom: 25px;
+}
+
+
+/* Efek hover */
+
+.visi-box,
+.misi-box {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.visi-box:hover,
+.misi-box:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 16px 35px rgba(139, 0, 0, 0.28);
+}
+/* =========================
+   SUMBER & REFERENSI
+========================= */
+
+.sumber-box {
+  margin-top: 35px;
+
+  padding: 25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf5,
+      #fff0a5
+    );
+
+  border-radius: 16px;
+
+  border-left: 5px solid #8b0000;
+
+  box-shadow:
+    0 8px 24px rgba(139, 0, 0, 0.10);
+}
+
+.sumber-box h4 {
+  margin-top: 0;
+  margin-bottom: 18px;
+
+  color: #8b0000;
+}
+
+.sumber-links {
+  display: grid;
+  gap: 12px;
+}
+
+
+/* Link card */
+
+.sumber-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 18px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  text-decoration: none;
+
+  border:
+    1px solid rgba(139, 0, 0, 0.10);
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.07);
+
+  transition: 0.3s ease;
+}
+
+
+/* Ikon */
+
+.sumber-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b0000,
+      #d2a400
+    );
+
+  color: white;
+
+  border-radius: 50%;
+
+  font-size: 19px;
+}
+
+
+/* Teks */
+
+.sumber-link div {
+  flex: 1;
+}
+
+.sumber-link strong {
+  display: block;
+
+  color: #8b0000;
+
+  font-size: 15px;
+}
+
+.sumber-link small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #666;
+
+  font-size: 12px;
+}
+
+
+/* Panah */
+
+.sumber-arrow {
+  color: #8b0000;
+
+  font-size: 22px;
+
+  transition: 0.3s ease;
+}
+
+
+/* Hover */
+
+.sumber-link:hover {
+  transform: translateY(-3px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf7,
+      #fff3b2
+    );
+
+  box-shadow:
+    0 8px 20px rgba(139, 0, 0, 0.16);
+}
+
+.sumber-link:hover .sumber-arrow {
+  transform: translateX(5px);
+}
+/* =========================
+   HOME - SEMUA TEKS GOLD
+========================= */
+
+/* Logo / nama PMKRI */
+.logo span {
+  color: #FFD700;
+}
+
+/* Menu navbar */
+.nav-links a {
+  color: #FFD700;
+}
+
+/* Tagline */
+.hero-content .tagline {
+  color: #FFD700;
+}
+
+/* Judul utama */
+.hero-content h1 {
+  color: #FFD700;
+}
+
+/* Sanctus Albertus Magnus */
+.hero-content h2 {
+  color: #FFD700;
+}
+
+/* Paragraf di Home */
+.hero-content p {
+  color: #FFD700;
+}
+
+/* Tombol Selengkapnya */
+.hero .button {
+  color: #FFD700;
+
+  background:
+    linear-gradient(
+      135deg,
+      #800000,
+      #a00000
+    );
+
+  border: 2px solid #FFD700;
+
+  box-shadow:
+    0 6px 18px rgba(255, 215, 0, 0.25);
+
+  transition: 0.3s ease;
+}
+
+/* Efek saat mouse di tombol */
+.hero .button:hover {
+  color: #800000;
+
+  background:
+    linear-gradient(
+      135deg,
+      #FFD700,
+      #f3c13a
+    );
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px rgba(255, 215, 0, 0.35);
+}
+
+/* Hover menu navbar */
+.nav-links a:hover {
+  color: #fff3a0;
+}
+/* ==================================
+   TAB SEJARAH - VISI - MISI
+================================== */
+
+.tentang-menu {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.tentang-btn {
+  border: none;
+  padding: 10px 22px;
+
+  border-radius: 30px;
+
+  background: linear-gradient(
+    135deg,
+    #fff7c2,
+    #f3c83f
+  );
+
+  color: #7a0000;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+
+  transition: 0.3s ease;
+}
+
+.tentang-btn:hover {
+  transform: translateY(-3px);
+
+  background: linear-gradient(
+    135deg,
+    #f5d94f,
+    #fff1a0
+  );
+}
+
+.tentang-btn.active {
+  background: linear-gradient(
+    135deg,
+    #750000,
+    #a00000,
+    #d7aa00
+  );
+
+  color: white;
+
+  box-shadow:
+    0 7px 20px rgba(139,0,0,0.25);
+}
+
+
+/* SEMUA ISI DISEMBUNYIKAN */
+
+.tentang-content {
+  display: none;
+
+  margin-top: 25px;
+  padding: 35px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    145deg,
+    #ffffff,
+    #fff8cc,
+    #ffe987
+  );
+
+  border-left: 6px solid #8b0000;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.10);
+}
+
+
+/* HANYA YANG ACTIVE DITAMPILKAN */
+
+.tentang-content.active {
+  display: block;
+
+  animation: tampilTab 0.45s ease;
+}
+
+@keyframes tampilTab {
+
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =========================
+   CONTACT BUTTON ICON ASLI
+========================= */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+
+  max-width: 900px;
+  margin: 30px auto;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 18px 20px;
+
+  border-radius: 16px;
+
+  text-decoration: none;
+
+  transition: all 0.3s ease;
+
+  box-shadow:
+    0 7px 20px rgba(0,0,0,0.10);
+}
+
+.contact-card i {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 28px;
+
+  background: white;
+
+  flex-shrink: 0;
+}
+
+.contact-card h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.contact-card p {
+  margin: 0;
+  font-size: 13px;
+}
+
+
+/* WHATSAPP */
+
+.whatsapp-card {
+  background:
+    linear-gradient(
+      135deg,
+      #25D366,
+      #128C7E
+    );
+
+  color: white;
+}
+
+.whatsapp-card i {
+  color: #25D366;
+}
+
+
+/* INSTAGRAM */
+
+.instagram-card {
+  background:
+    linear-gradient(
+      135deg,
+      #833AB4,
+      #E1306C,
+      #F77737
+    );
+
+  color: white;
+}
+
+.instagram-card i {
+  color: #E1306C;
+}
+
+
+/* EMAIL */
+
+.email-card {
+  background:
+    linear-gradient(
+      135deg,
+      #c5221f,
+      #ea4335
+    );
+
+  color: white;
+}
+
+.email-card i {
+  color: #ea4335;
+}
+
+
+/* HOVER */
+
+.contact-card:hover {
+  transform:
+    translateY(-6px)
+    scale(1.02);
+
+  box-shadow:
+    0 14px 30px rgba(0,0,0,0.18);
+}
+
+.contact-card:hover i {
+  transform: rotate(8deg) scale(1.08);
+}
+
+.contact-card i {
+  transition: 0.3s ease;
+}
+
+
+/* HP */
+
+@media (max-width: 768px) {
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
