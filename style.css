@@ -1946,3 +1946,252 @@ body.is-transitioning .transition-brand {
   }
 
 }
+/* =========================================
+   KONTAK - VERSI LEBIH KECIL & RAPI
+   ========================================= */
+
+/* Kartu WhatsApp, Instagram, Email */
+.contact-grid {
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto 30px;
+}
+
+.contact-card {
+  min-height: 130px;
+  padding: 22px 24px;
+
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  box-sizing: border-box;
+}
+
+/* Ikon dibuat kecil */
+.contact-card .icon {
+  font-size: 28px;
+  width: 38px;
+  min-width: 38px;
+
+  text-align: center;
+}
+
+/* Judul kontak */
+.contact-card h3 {
+  margin: 0 0 5px;
+
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+/* Keterangan */
+.contact-card p {
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* =========================================
+   KOTAK ALAMAT
+   ========================================= */
+
+.address-card {
+  max-width: 1100px;
+  margin: 25px auto;
+
+  padding: 20px 25px;
+
+  border-radius: 18px;
+  border: 2px solid #FFD700;
+
+  box-sizing: border-box;
+}
+
+.address-card p {
+  margin: 0 0 14px;
+
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* Tombol Salin Alamat */
+.address-card button,
+.copy-address {
+  display: inline-block;
+
+  padding: 9px 18px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: white;
+  color: #8b0000;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.address-card button:hover,
+.copy-address:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.18);
+}
+
+
+/* =========================================
+   FORM KIRIM PESAN
+   ========================================= */
+
+.contact-form,
+.message-form {
+  max-width: 1100px;
+  margin: 25px auto;
+
+  padding: 28px;
+
+  border-radius: 18px;
+}
+
+/* Judul form */
+.contact-form h3,
+.message-form h3 {
+  margin-bottom: 18px;
+}
+
+/* Input */
+.contact-form input,
+.contact-form textarea,
+.message-form input,
+.message-form textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 11px 14px;
+
+  border-radius: 10px;
+}
+
+/* Tombol Kirim via WhatsApp */
+.contact-form button,
+.message-form button,
+.whatsapp-button,
+button[onclick*="WhatsApp"] {
+  display: inline-block;
+
+  width: auto;
+  min-width: 150px;
+
+  padding: 9px 18px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: #8b0000;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.contact-form button:hover,
+.message-form button:hover,
+.whatsapp-button:hover,
+button[onclick*="WhatsApp"]:hover {
+  background: #650000;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 5px 12px rgba(0,0,0,0.18);
+}
+
+
+/* =========================================
+   RESPONSIVE HP
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+  }
+
+  .contact-card {
+    min-height: 100px;
+
+    padding: 16px 18px;
+
+    gap: 12px;
+
+    border-radius: 15px;
+  }
+
+  .contact-card .icon {
+    font-size: 24px;
+
+    width: 32px;
+    min-width: 32px;
+  }
+
+  .contact-card h3 {
+    font-size: 19px;
+  }
+
+  .contact-card p {
+    font-size: 14px;
+  }
+
+  .address-card {
+    margin: 18px auto;
+
+    padding: 18px;
+
+    border-radius: 15px;
+  }
+
+  .address-card p {
+    font-size: 15px;
+  }
+
+  .address-card button,
+  .copy-address {
+    padding: 8px 15px;
+
+    font-size: 13px;
+  }
+
+  .contact-form,
+  .message-form {
+    padding: 20px 16px;
+
+    margin: 18px auto;
+  }
+
+  .contact-form button,
+  .message-form button,
+  .whatsapp-button,
+  button[onclick*="WhatsApp"] {
+    min-width: 130px;
+
+    padding: 8px 15px;
+
+    font-size: 13px;
+  }
+}
