@@ -10,15 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ===============================
        ANIMASI SAAT WEBSITE DIBUKA
        =============================== */
+document.body.classList.add("is-transitioning");
+document.body.classList.add("transition-lock");
 
-    document.body.classList.add("is-transitioning");
-    cover.classList.add("transition-in");
+cover.classList.add("transition-in");
 
-    setTimeout(function () {
-        cover.classList.remove("transition-in");
-        document.body.classList.remove("is-transitioning");
-    }, 1200);
-
+setTimeout(function () {
+    cover.classList.remove("transition-in");
+    document.body.classList.remove("is-transitioning");
+    document.body.classList.remove("transition-lock");
+}, 1200);
 
     /* ===============================
        ANIMASI MENU NAVBAR
