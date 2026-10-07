@@ -2490,3 +2490,45 @@ button[onclick*="WhatsApp"]:hover {
   font-size: 17px !important;
   color: #f5c518 !important;
 }
+/* PERBAIKAN ICON KONTAK PMKRI */
+
+.contact-card i {
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  display: inline-block !important;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+
+  font-size: 20px !important;
+  line-height: 1 !important;
+}
+
+/* WhatsApp */
+.contact-card:nth-child(1) i {
+  color: #25D366 !important;
+}
+
+/* Instagram */
+.contact-card:nth-child(2) i {
+  color: #C13584 !important;
+}
+
+/* Email */
+.contact-card:nth-child(3) i {
+  color: #4285F4 !important;
+}
+
+.contact-card h3 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
