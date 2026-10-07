@@ -2540,3 +2540,21 @@ body.transition-lock {
     overflow: hidden;
     height: 100vh;
 }
+
+/* =========================================
+   KUNCI TOTAL SAAT TRANSISI
+   ========================================= */
+
+html.transition-lock,
+body.transition-lock {
+    overflow: hidden !important;
+    height: 100% !important;
+    overscroll-behavior: none !important;
+}
+
+body.transition-lock {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+}
