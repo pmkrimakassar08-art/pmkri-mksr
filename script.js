@@ -192,3 +192,72 @@ function kirimWhatsApp() {
     window.open(url, "_blank");
 
 }
+
+/* =========================================
+   KUNCI TOTAL SCROLL SAAT TRANSISI
+   ========================================= */
+
+let posisiScroll = 0;
+
+function kunciHalaman() {
+    posisiScroll = window.scrollY;
+
+    document.documentElement.classList.add("transition-lock");
+    document.body.classList.add("transition-lock");
+
+    document.body.style.top = `-${posisiScroll}px`;
+}
+
+function bukaHalaman() {
+    document.documentElement.classList.remove("transition-lock");
+    document.body.classList.remove("transition-lock");
+
+    document.body.style.top = "";
+
+    window.scrollTo(0, posisiScroll);
+}
+
+
+/* BLOKIR SCROLL MOUSE */
+window.addEventListener("wheel", function (event) {
+
+    if (document.body.classList.contains("transition-lock")) {
+        event.preventDefault();
+    }
+
+}, { passive: false });
+
+
+/* BLOKIR TOUCH / SWIPE */
+window.addEventListener("touchmove", function (event) {
+
+    if (document.body.classList.contains("transition-lock")) {
+        event.preventDefault();
+    }
+
+}, { passive: false });
+
+
+/* BLOKIR TOMBOL KEYBOARD UNTUK SCROLL */
+window.addEventListener("keydown", function (event) {
+
+    if (!document.body.classList.contains("transition-lock")) {
+        return;
+    }
+
+    const tombolScroll = [
+        "ArrowUp",
+        "ArrowDown",
+        "PageUp",
+        "PageDown",
+        "Home",
+        "End",
+        " ",
+        "Spacebar"
+    ];
+
+    if (tombolScroll.includes(event.key)) {
+        event.preventDefault();
+    }
+
+});
