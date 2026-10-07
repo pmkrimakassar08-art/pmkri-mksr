@@ -38,11 +38,11 @@ setTimeout(function () {
             }
 
             event.preventDefault();
+document.body.classList.add("is-transitioning");
+document.body.classList.add("transition-lock");
 
-            document.body.classList.add("is-transitioning");
-
-            cover.classList.remove("transition-in");
-            cover.classList.add("transition-out");
+cover.classList.remove("transition-in");
+cover.classList.add("transition-out");
 
 
             setTimeout(function () {
@@ -60,8 +60,8 @@ setTimeout(function () {
 
                 setTimeout(function () {
 
-                    document.body.classList.remove("is-transitioning");
-
+              document.body.classList.remove("is-transitioning");
+document.body.classList.remove("transition-lock");
                 }, 300);
 
             }, 650);
