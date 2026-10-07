@@ -7,109 +7,66 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ===============================
-       ANIMASI SAAT WEBSITE DIBUKA
-       =============================== */
-document.body.classList.add("is-transitioning");
-document.body.classList.add("transition-lock");
-
-cover.classList.add("transition-in");
-
-setTimeout(function () {
-    cover.classList.remove("transition-in");
-    document.body.classList.remove("is-transitioning");
-    document.body.classList.remove("transition-lock");
-}, 1200);
-
-    /* ===============================
-       ANIMASI MENU NAVBAR
-       =============================== */
+    let posisiScroll = 0;
+    let sedangTransisi = false;
 
     /* =========================================
-   TRANSISI NAVBAR PMKRI
-   ========================================= */
+       KUNCI HALAMAN
+    ========================================= */
 
-const navLinks = document.querySelectorAll(".nav-links a");
+    function kunciHalaman(posisi) {
 
-navLinks.forEach(function (link) {
+        posisiScroll = posisi !== undefined
+            ? posisi
+            : window.scrollY;
 
-    link.addEventListener("click", function (event) {
-
-        const target = this.getAttribute("href");
-
-        // Hanya untuk link menuju section dalam halaman
-        if (!target || !target.startsWith("#")) {
-            return;
-        }
-
-        event.preventDefault();
-
-        const section = document.querySelector(target);
-
-        if (!section) {
-            return;
-        }
-
-        // Kunci halaman
-        document.body.classList.add("is-transitioning");
+        document.documentElement.classList.add("transition-lock");
         document.body.classList.add("transition-lock");
 
-        // Tutup layar dengan animasi
-        cover.classList.remove("transition-out");
-        cover.classList.add("transition-in");
+        document.body.style.top = `-${posisiScroll}px`;
+    }
 
 
-        /*
-         * TUNGGU SAMPAI LAYAR BENAR-BENAR
-         * MENUTUP HALAMAN
-         */
-        setTimeout(function () {
+    /* =========================================
+       BUKA KUNCI HALAMAN
+    ========================================= */
 
-            // Pindahkan halaman SAAT masih tertutup
-            section.scrollIntoView({
-                behavior: "auto",
-                block: "start"
-            });
+    function bukaHalaman() {
 
-            // Pastikan posisi sudah berpindah
-            window.scrollTo({
-                top: section.offsetTop,
-                behavior: "auto"
-            });
+        document.documentElement.classList.remove("transition-lock");
+        document.body.classList.remove("transition-lock");
+
+        document.body.style.top = "";
+
+        window.scrollTo(0, posisiScroll);
+    }
 
 
-            /*
-             * Setelah halaman berpindah,
-             * baru buka layar transisi.
-             */
-            setTimeout(function () {
+    /* =========================================
+       ANIMASI SAAT WEBSITE DIBUKA
+    ========================================= */
 
-                cover.classList.remove("transition-in");
-                cover.classList.add("transition-out");
+    kunciHalaman(0);
+
+    cover.classList.add("transition-in");
+
+    setTimeout(function () {
+
+        cover.classList.remove("transition-in");
+
+        bukaHalaman();
+
+    }, 1200);
 
 
-                // Tunggu animasi membuka selesai
-                setTimeout(function () {
+    /* =========================================
+       NAVBAR - SATU EVENT SAJA
+    ========================================= */
 
-                    cover.classList.remove("transition-out");
+    const navLinks = document.querySelectorAll(".nav-links a");
 
-                    document.body.classList.remove(
-                        "is-transitioning"
-                    );
+    navLinks.forEach(function (link) {
 
-                    document.body.classList.remove(
-                        "transition-lock"
-                    );
-
-                }, 650);
-
-            }, 150);
-
-        }, 550);
-
-    });
-
-});
         link.addEventListener("click", function (event) {
 
             const target = this.getAttribute("href");
@@ -118,45 +75,181 @@ navLinks.forEach(function (link) {
                 return;
             }
 
+            const section = document.querySelector(target);
+
+            if (!section) {
+                return;
+            }
+
             event.preventDefault();
-document.body.classList.add("is-transitioning");
-document.body.classList.add("transition-lock");
 
-cover.classList.remove("transition-in");
-cover.classList.add("transition-out");
+            /* Jangan jalankan dua transisi sekaligus */
+            if (sedangTransisi) {
+                return;
+            }
+
+            sedangTransisi = true;
 
 
+            /* Posisi tujuan */
+            const targetY =
+                section.getBoundingClientRect().top +
+                window.scrollY;
+
+
+            /* Kunci halaman sekarang */
+            kunciHalaman(window.scrollY);
+
+
+            /* Tutup layar */
+            cover.classList.remove("transition-out");
+            cover.classList.add("transition-in");
+
+
+            /*
+             * Tunggu sampai layar tertutup penuh.
+             * Selama ini halaman TIDAK bergerak.
+             */
             setTimeout(function () {
 
-                const section = document.querySelector(target);
+                /*
+                 * Buka kunci sebentar,
+                 * pindahkan posisi halaman,
+                 * lalu kunci lagi di posisi baru.
+                 */
+                document.documentElement.classList.remove(
+                    "transition-lock"
+                );
 
-                if (section) {
-                    section.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }
+                document.body.classList.remove(
+                    "transition-lock"
+                );
 
-                cover.classList.remove("transition-out");
+                document.body.style.top = "";
 
+
+                /* Matikan smooth scroll sementara */
+                const scrollBehavior =
+                    document.documentElement.style.scrollBehavior;
+
+                document.documentElement.style.scrollBehavior = "auto";
+
+
+                /* Pindahkan halaman TANPA animasi */
+                window.scrollTo(0, targetY);
+
+
+                /* Kunci lagi di posisi tujuan */
+                kunciHalaman(targetY);
+
+
+                /* Kembalikan pengaturan scroll */
+                document.documentElement.style.scrollBehavior =
+                    scrollBehavior;
+
+
+                /*
+                 * Sekarang buka layar
+                 */
                 setTimeout(function () {
 
-              document.body.classList.remove("is-transitioning");
-document.body.classList.remove("transition-lock");
-                }, 300);
+                    cover.classList.remove("transition-in");
+                    cover.classList.add("transition-out");
 
-            }, 650);
+
+                    /*
+                     * Tunggu animasi keluar selesai
+                     */
+                    setTimeout(function () {
+
+                        cover.classList.remove("transition-out");
+
+                        bukaHalaman();
+
+                        sedangTransisi = false;
+
+                    }, 650);
+
+                }, 100);
+
+            }, 600);
 
         });
+
+    });
+
+
+    /* =========================================
+       BLOKIR SCROLL MOUSE
+    ========================================= */
+
+    window.addEventListener("wheel", function (event) {
+
+        if (
+            document.body.classList.contains(
+                "transition-lock"
+            )
+        ) {
+            event.preventDefault();
+        }
+
+    }, { passive: false });
+
+
+    /* =========================================
+       BLOKIR TOUCH / SWIPE
+    ========================================= */
+
+    window.addEventListener("touchmove", function (event) {
+
+        if (
+            document.body.classList.contains(
+                "transition-lock"
+            )
+        ) {
+            event.preventDefault();
+        }
+
+    }, { passive: false });
+
+
+    /* =========================================
+       BLOKIR KEYBOARD SCROLL
+    ========================================= */
+
+    window.addEventListener("keydown", function (event) {
+
+        if (
+            !document.body.classList.contains(
+                "transition-lock"
+            )
+        ) {
+            return;
+        }
+
+        const tombolScroll = [
+            "ArrowUp",
+            "ArrowDown",
+            "PageUp",
+            "PageDown",
+            "Home",
+            "End",
+            " ",
+            "Spacebar"
+        ];
+
+        if (tombolScroll.includes(event.key)) {
+            event.preventDefault();
+        }
 
     });
 
 });
 
 
-/* ===============================
+/* =========================================
    TENTANG PMKRI
-   =============================== */
+========================================= */
 
 function bukaTentang(id, tombol) {
 
@@ -191,9 +284,9 @@ function bukaTentang(id, tombol) {
 }
 
 
-/* ===============================
+/* =========================================
    SALIN ALAMAT
-   =============================== */
+========================================= */
 
 function salinAlamat() {
 
@@ -221,9 +314,9 @@ function salinAlamat() {
 }
 
 
-/* ===============================
+/* =========================================
    KIRIM KE WHATSAPP
-   =============================== */
+========================================= */
 
 function kirimWhatsApp() {
 
@@ -273,72 +366,3 @@ function kirimWhatsApp() {
     window.open(url, "_blank");
 
 }
-
-/* =========================================
-   KUNCI TOTAL SCROLL SAAT TRANSISI
-   ========================================= */
-
-let posisiScroll = 0;
-
-function kunciHalaman() {
-    posisiScroll = window.scrollY;
-
-    document.documentElement.classList.add("transition-lock");
-    document.body.classList.add("transition-lock");
-
-    document.body.style.top = `-${posisiScroll}px`;
-}
-
-function bukaHalaman() {
-    document.documentElement.classList.remove("transition-lock");
-    document.body.classList.remove("transition-lock");
-
-    document.body.style.top = "";
-
-    window.scrollTo(0, posisiScroll);
-}
-
-
-/* BLOKIR SCROLL MOUSE */
-window.addEventListener("wheel", function (event) {
-
-    if (document.body.classList.contains("transition-lock")) {
-        event.preventDefault();
-    }
-
-}, { passive: false });
-
-
-/* BLOKIR TOUCH / SWIPE */
-window.addEventListener("touchmove", function (event) {
-
-    if (document.body.classList.contains("transition-lock")) {
-        event.preventDefault();
-    }
-
-}, { passive: false });
-
-
-/* BLOKIR TOMBOL KEYBOARD UNTUK SCROLL */
-window.addEventListener("keydown", function (event) {
-
-    if (!document.body.classList.contains("transition-lock")) {
-        return;
-    }
-
-    const tombolScroll = [
-        "ArrowUp",
-        "ArrowDown",
-        "PageUp",
-        "PageDown",
-        "Home",
-        "End",
-        " ",
-        "Spacebar"
-    ];
-
-    if (tombolScroll.includes(event.key)) {
-        event.preventDefault();
-    }
-
-});
