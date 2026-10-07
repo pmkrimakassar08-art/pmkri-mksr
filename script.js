@@ -25,10 +25,91 @@ setTimeout(function () {
        ANIMASI MENU NAVBAR
        =============================== */
 
-    const navLinks = document.querySelectorAll(".nav-links a");
+    /* =========================================
+   TRANSISI NAVBAR PMKRI
+   ========================================= */
 
-    navLinks.forEach(function (link) {
+const navLinks = document.querySelectorAll(".nav-links a");
 
+navLinks.forEach(function (link) {
+
+    link.addEventListener("click", function (event) {
+
+        const target = this.getAttribute("href");
+
+        // Hanya untuk link menuju section dalam halaman
+        if (!target || !target.startsWith("#")) {
+            return;
+        }
+
+        event.preventDefault();
+
+        const section = document.querySelector(target);
+
+        if (!section) {
+            return;
+        }
+
+        // Kunci halaman
+        document.body.classList.add("is-transitioning");
+        document.body.classList.add("transition-lock");
+
+        // Tutup layar dengan animasi
+        cover.classList.remove("transition-out");
+        cover.classList.add("transition-in");
+
+
+        /*
+         * TUNGGU SAMPAI LAYAR BENAR-BENAR
+         * MENUTUP HALAMAN
+         */
+        setTimeout(function () {
+
+            // Pindahkan halaman SAAT masih tertutup
+            section.scrollIntoView({
+                behavior: "auto",
+                block: "start"
+            });
+
+            // Pastikan posisi sudah berpindah
+            window.scrollTo({
+                top: section.offsetTop,
+                behavior: "auto"
+            });
+
+
+            /*
+             * Setelah halaman berpindah,
+             * baru buka layar transisi.
+             */
+            setTimeout(function () {
+
+                cover.classList.remove("transition-in");
+                cover.classList.add("transition-out");
+
+
+                // Tunggu animasi membuka selesai
+                setTimeout(function () {
+
+                    cover.classList.remove("transition-out");
+
+                    document.body.classList.remove(
+                        "is-transitioning"
+                    );
+
+                    document.body.classList.remove(
+                        "transition-lock"
+                    );
+
+                }, 650);
+
+            }, 150);
+
+        }, 550);
+
+    });
+
+});
         link.addEventListener("click", function (event) {
 
             const target = this.getAttribute("href");
