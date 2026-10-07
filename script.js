@@ -204,3 +204,33 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+function salinAlamat() {
+
+  const alamat = document.getElementById("alamatPMKRI");
+
+  if (!alamat) {
+    alert("Alamat tidak ditemukan.");
+    return;
+  }
+
+  const teksAlamat = alamat.innerText.trim();
+
+  navigator.clipboard.writeText(teksAlamat)
+    .then(function () {
+      alert("Alamat berhasil disalin!");
+    })
+    .catch(function () {
+
+      const textarea = document.createElement("textarea");
+
+      textarea.value = teksAlamat;
+      document.body.appendChild(textarea);
+
+      textarea.select();
+      document.execCommand("copy");
+
+      textarea.remove();
+
+      alert("Alamat berhasil disalin!");
+    });
+}
