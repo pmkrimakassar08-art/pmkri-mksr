@@ -1,285 +1,193 @@
-function kirimWhatsApp() {
-  const nama = document.getElementById("nama").value;
-  const email = document.getElementById("email").value;
-  const pesan = document.getElementById("pesan").value;
-
-  if (nama.trim() === "") {
-    alert("Silakan isi nama terlebih dahulu.");
-    return;
-  }
-
-  if (pesan.trim() === "") {
-    alert("Silakan isi pesan terlebih dahulu.");
-    return;
-  }
-
-  const nomorWhatsApp = "6285185346006"; // Ganti dengan nomor WhatsApp tujuan
-
-  const isiPesan =
-`Halo PMKRI Cabang Makassar 👋
-
-Nama: ${nama}
-Email: ${email}
-
-Pesan:
-${pesan}`;
-
-  const linkWhatsApp =
-    "https://wa.me/" +
-    nomorWhatsApp +
-    "?text=" +
-    encodeURIComponent(isiPesan);
-
-  window.location.href = linkWhatsApp;
-}
-window.bukaTentang = function(id, tombol) {
-
-  const semuaKonten =
-    document.querySelectorAll(".tentang-content");
-
-  semuaKonten.forEach(function(konten) {
-    konten.classList.remove("active");
-  });
-
-
-  const semuaTombol =
-    document.querySelectorAll(".tentang-btn");
-
-  semuaTombol.forEach(function(btn) {
-    btn.classList.remove("active");
-  });
-
-
-  const target =
-    document.getElementById(id);
-
-  if (target) {
-    target.classList.add("active");
-  }
-
-  tombol.classList.add("active");
-};
-/* =========================================
-   NAVIGASI 1 SECTION + ANIMASI TRANSISI PMKRI
-   ========================================= */
-
 document.addEventListener("DOMContentLoaded", function () {
 
-  const cover = document.getElementById("transition-cover");
+    const cover = document.getElementById("transition-cover");
 
-  const sectionIds = [
-    "beranda",
-    "tentang",
-    "kegiatan",
-    "pengurus",
-    "kontak"
-  ];
-
-  const sections = sectionIds
-    .map(function (id) {
-      return document.getElementById(id);
-    })
-    .filter(Boolean);
-
-  const navLinks = document.querySelectorAll(
-    '.nav-links a[href^="#"]'
-  );
-
-  function tampilkanSection(id) {
-
-    sections.forEach(function (section) {
-      section.style.display = "none";
-    });
-
-    const target = document.getElementById(id);
-
-    if (target) {
-      target.style.display = "block";
-      window.scrollTo(0, 0);
-    }
-  }
-
-  function jalankanTransisi(id) {
-
-    const target = document.getElementById(id);
-
-    if (!target) return;
-
-    // Jika tidak ada cover, langsung pindah
     if (!cover) {
-      tampilkanSection(id);
-      return;
+        console.log("Transition cover tidak ditemukan.");
+        return;
     }
+
+    /* ===============================
+       ANIMASI SAAT WEBSITE DIBUKA
+       =============================== */
 
     document.body.classList.add("is-transitioning");
-
-    // Tutup layar dengan animasi
-    cover.classList.remove("transition-out");
     cover.classList.add("transition-in");
 
     setTimeout(function () {
-
-      // Ganti section ketika layar tertutup
-      tampilkanSection(id);
-
-      setTimeout(function () {
-
-        // Buka kembali layar
         cover.classList.remove("transition-in");
-        cover.classList.add("transition-out");
+        document.body.classList.remove("is-transitioning");
+    }, 1200);
 
-        setTimeout(function () {
 
-          document.body.classList.remove("is-transitioning");
-          cover.classList.remove("transition-out");
+    /* ===============================
+       ANIMASI MENU NAVBAR
+       =============================== */
 
-        }, 650);
+    const navLinks = document.querySelectorAll(".nav-links a");
 
-      }, 150);
+    navLinks.forEach(function (link) {
 
-    }, 550);
-  }
+        link.addEventListener("click", function (event) {
 
-  // Tampilan pertama: BERANDA
-  tampilkanSection("beranda");
+            const target = this.getAttribute("href");
 
-  // Klik menu navigasi
-  navLinks.forEach(function (link) {
+            if (!target || !target.startsWith("#")) {
+                return;
+            }
 
-    link.addEventListener("click", function (event) {
+            event.preventDefault();
 
-      event.preventDefault();
+            document.body.classList.add("is-transitioning");
 
-      const targetId = this.getAttribute("href").replace("#", "");
+            cover.classList.remove("transition-in");
+            cover.classList.add("transition-out");
 
-      if (!sectionIds.includes(targetId)) {
-        return;
-      }
 
-      // Ubah alamat URL menjadi #tentang, #kegiatan, dll.
-      history.pushState(null, "", "#" + targetId);
+            setTimeout(function () {
 
-      jalankanTransisi(targetId);
+                const section = document.querySelector(target);
 
-    });
+                if (section) {
+                    section.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
 
-  });
+                cover.classList.remove("transition-out");
 
-  // Tombol hero yang menuju section
-  const heroLinks = document.querySelectorAll(
-    '.hero .button[href^="#"]'
-  );
+                setTimeout(function () {
 
-  heroLinks.forEach(function (link) {
+                    document.body.classList.remove("is-transitioning");
 
-    link.addEventListener("click", function (event) {
+                }, 300);
 
-      event.preventDefault();
+            }, 650);
 
-      const targetId = this.getAttribute("href").replace("#", "");
-
-      if (!sectionIds.includes(targetId)) {
-        return;
-      }
-
-      history.pushState(null, "", "#" + targetId);
-
-      jalankanTransisi(targetId);
+        });
 
     });
-
-  });
-
-  // Tombol Back / Forward browser
-  window.addEventListener("popstate", function () {
-
-    const hash = window.location.hash.replace("#", "");
-
-    if (sectionIds.includes(hash)) {
-      tampilkanSection(hash);
-    } else {
-      tampilkanSection("beranda");
-    }
-
-  });
 
 });
-function salinAlamat() {
-
-  const alamat = document.getElementById("alamatPMKRI");
-
-  if (!alamat) {
-    alert("Alamat tidak ditemukan.");
-    return;
-  }
-
-  /* =========================================
-   SALIN ALAMAT PMKRI
-   ========================================= */
-
-window.salinAlamat = function () {
-
-  const alamatElement = document.getElementById("alamatPMKRI");
-
-  if (!alamatElement) {
-    alert("Alamat PMKRI tidak ditemukan.");
-    return;
-  }
-
-  const alamat = alamatElement.innerText
-    .replace(/\s+/g, " ")
-    .trim();
-
-  // Cara utama
-  if (navigator.clipboard && window.isSecureContext) {
-
-    navigator.clipboard.writeText(alamat)
-      .then(function () {
-        alert("Alamat berhasil disalin!");
-      })
-      .catch(function () {
-        salinDenganCaraLama(alamat);
-      });
-
-  } else {
-
-    salinDenganCaraLama(alamat);
-
-  }
-};
 
 
-function salinDenganCaraLama(teks) {
+/* ===============================
+   TENTANG PMKRI
+   =============================== */
 
-  const textarea = document.createElement("textarea");
+function bukaTentang(id, tombol) {
 
-  textarea.value = teks;
+    const contents =
+        document.querySelectorAll(".tentang-content");
 
-  textarea.style.position = "fixed";
-  textarea.style.left = "-9999px";
-  textarea.style.top = "0";
+    contents.forEach(function (content) {
+        content.classList.remove("active");
+    });
 
-  document.body.appendChild(textarea);
 
-  textarea.focus();
-  textarea.select();
-  textarea.setSelectionRange(0, textarea.value.length);
+    const buttons =
+        document.querySelectorAll(".tentang-btn");
 
-  try {
+    buttons.forEach(function (button) {
+        button.classList.remove("active");
+    });
 
-    const berhasil = document.execCommand("copy");
 
-    if (berhasil) {
-      alert("Alamat berhasil disalin!");
-    } else {
-      alert("Alamat belum berhasil disalin. Silakan coba lagi.");
+    const target =
+        document.getElementById(id);
+
+    if (target) {
+        target.classList.add("active");
     }
 
-  } catch (error) {
 
-    alert("Alamat belum berhasil disalin. Silakan coba lagi.");
+    if (tombol) {
+        tombol.classList.add("active");
+    }
 
-  }
+}
 
-  document.body.removeChild(textarea);
+
+/* ===============================
+   SALIN ALAMAT
+   =============================== */
+
+function salinAlamat() {
+
+    const alamat =
+        document.getElementById("alamatPMKRI");
+
+    if (!alamat) {
+        return;
+    }
+
+    const teks = alamat.innerText.trim();
+
+    navigator.clipboard.writeText(teks)
+        .then(function () {
+
+            alert("Alamat berhasil disalin!");
+
+        })
+        .catch(function () {
+
+            alert("Alamat gagal disalin.");
+
+        });
+
+}
+
+
+/* ===============================
+   KIRIM KE WHATSAPP
+   =============================== */
+
+function kirimWhatsApp() {
+
+    const nama =
+        document.getElementById("nama").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const pesan =
+        document.getElementById("pesan").value.trim();
+
+
+    if (nama === "") {
+        alert("Silakan masukkan nama.");
+        return;
+    }
+
+    if (email === "") {
+        alert("Silakan masukkan email.");
+        return;
+    }
+
+    if (pesan === "") {
+        alert("Silakan masukkan pesan.");
+        return;
+    }
+
+
+    const nomor = "6285185346006";
+
+    const teks =
+        "Halo PMKRI Makassar,%0A%0A" +
+        "Nama: " + encodeURIComponent(nama) + "%0A" +
+        "Email: " + encodeURIComponent(email) + "%0A%0A" +
+        "Pesan:%0A" +
+        encodeURIComponent(pesan);
+
+
+    const url =
+        "https://wa.me/" +
+        nomor +
+        "?text=" +
+        teks;
+
+
+    window.open(url, "_blank");
+
 }
