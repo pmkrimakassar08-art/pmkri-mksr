@@ -2401,3 +2401,42 @@ button[onclick*="WhatsApp"]:hover {
     font-size: 12px !important;
   }
 }
+/* =========================================
+   ICON KONTAK ASLI FONT AWESOME
+   ========================================= */
+
+.contact-card h3 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.contact-card h3 i {
+  font-size: 18px !important;
+}
+
+/* Warna ikon sesuai kartu */
+.contact-card:nth-child(1) h3 i {
+  color: #25D366 !important;
+}
+
+.contact-card:nth-child(2) h3 i {
+  color: #c13584 !important;
+}
+
+.contact-card:nth-child(3) h3 i {
+  color: #4285f4 !important;
+}
+
+/* Ikon alamat */
+.alamat-box p {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.alamat-box p i {
+  color: #f5c518 !important;
+  font-size: 17px !important;
+}
