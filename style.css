@@ -2532,3 +2532,11 @@ button[onclick*="WhatsApp"]:hover {
   align-items: center !important;
   gap: 8px !important;
 }
+/* =========================================
+   KUNCI HALAMAN SAAT TRANSISI
+   ========================================= */
+
+body.transition-lock {
+    overflow: hidden;
+    height: 100vh;
+}
