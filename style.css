@@ -1764,3 +1764,185 @@ button:active,
   }
 
 }
+/* =========================================
+   TRANSISI HALAMAN PMKRI
+   ========================================= */
+
+.transition-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    135deg,
+    #650000,
+    #8b0000 55%,
+    #570000
+  );
+
+  color: white;
+
+  transform: translateY(101%);
+  pointer-events: none;
+
+  will-change: transform;
+
+  border-bottom: 5px solid #FFD700;
+}
+
+.transition-brand {
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.75);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s ease;
+}
+
+.transition-brand img {
+  display: block;
+
+  width: clamp(130px, 22vw, 210px);
+  height: auto;
+
+  margin: 0 auto 18px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(
+    0 10px 25px rgba(0,0,0,0.35)
+  );
+}
+
+.transition-title {
+  font-size: clamp(28px, 6vw, 58px);
+
+  font-weight: 900;
+
+  letter-spacing: 3px;
+
+  color: #FFD700;
+
+  text-shadow:
+    0 4px 15px rgba(0,0,0,0.35);
+}
+
+.transition-subtitle {
+  margin-top: 8px;
+
+  font-size: clamp(14px, 2.5vw, 22px);
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+  color: white;
+}
+
+
+/* SAAT ANIMASI AKTIF */
+
+body.is-transitioning .transition-cover {
+  pointer-events: auto;
+}
+
+body.is-transitioning .transition-brand {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* ANIMASI MASUK */
+
+.transition-cover.transition-in {
+  animation:
+    pmkriTransitionIn
+    0.55s
+    cubic-bezier(.65,0,.35,1)
+    forwards;
+}
+
+@keyframes pmkriTransitionIn {
+
+  from {
+    transform: translateY(101%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+
+}
+
+
+/* ANIMASI KELUAR */
+
+.transition-cover.transition-out {
+  animation:
+    pmkriTransitionOut
+    0.65s
+    cubic-bezier(.65,0,.35,1)
+    forwards;
+}
+
+@keyframes pmkriTransitionOut {
+
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-101%);
+  }
+
+}
+
+
+/* EFEK LOGO */
+
+.transition-cover.transition-in .transition-brand img {
+  animation:
+    logoPMKRI
+    0.7s
+    ease
+    0.2s
+    both;
+}
+
+@keyframes logoPMKRI {
+
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-8deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+
+}
+
+
+/* HP */
+
+@media (max-width: 768px) {
+
+  .transition-brand img {
+    width: 130px;
+  }
+
+  .transition-title {
+    letter-spacing: 2px;
+  }
+
+  .transition-subtitle {
+    letter-spacing: 1px;
+  }
+
+}
