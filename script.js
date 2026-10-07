@@ -60,67 +60,146 @@ window.bukaTentang = function(id, tombol) {
   tombol.classList.add("active");
 };
 /* =========================================
-   ANIMASI TRANSISI PMKRI
+   NAVIGASI 1 SECTION + ANIMASI TRANSISI PMKRI
    ========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
   const cover = document.getElementById("transition-cover");
 
-  if (!cover) return;
+  const sectionIds = [
+    "beranda",
+    "tentang",
+    "kegiatan",
+    "pengurus",
+    "kontak"
+  ];
 
-  const links = document.querySelectorAll(
-    '.nav-links a, .hero .button'
+  const sections = sectionIds
+    .map(function (id) {
+      return document.getElementById(id);
+    })
+    .filter(Boolean);
+
+  const navLinks = document.querySelectorAll(
+    '.nav-links a[href^="#"]'
   );
 
-  links.forEach(function (link) {
+  function tampilkanSection(id) {
+
+    sections.forEach(function (section) {
+      section.style.display = "none";
+    });
+
+    const target = document.getElementById(id);
+
+    if (target) {
+      target.style.display = "block";
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function jalankanTransisi(id) {
+
+    const target = document.getElementById(id);
+
+    if (!target) return;
+
+    // Jika tidak ada cover, langsung pindah
+    if (!cover) {
+      tampilkanSection(id);
+      return;
+    }
+
+    document.body.classList.add("is-transitioning");
+
+    // Tutup layar dengan animasi
+    cover.classList.remove("transition-out");
+    cover.classList.add("transition-in");
+
+    setTimeout(function () {
+
+      // Ganti section ketika layar tertutup
+      tampilkanSection(id);
+
+      setTimeout(function () {
+
+        // Buka kembali layar
+        cover.classList.remove("transition-in");
+        cover.classList.add("transition-out");
+
+        setTimeout(function () {
+
+          document.body.classList.remove("is-transitioning");
+          cover.classList.remove("transition-out");
+
+        }, 650);
+
+      }, 150);
+
+    }, 550);
+  }
+
+  // Tampilan pertama: BERANDA
+  tampilkanSection("beranda");
+
+  // Klik menu navigasi
+  navLinks.forEach(function (link) {
 
     link.addEventListener("click", function (event) {
 
-      const target = this.getAttribute("href");
+      event.preventDefault();
 
-      // Hanya animasikan link menuju section website
-      if (!target || !target.startsWith("#")) {
+      const targetId = this.getAttribute("href").replace("#", "");
+
+      if (!sectionIds.includes(targetId)) {
         return;
       }
 
-      event.preventDefault();
+      // Ubah alamat URL menjadi #tentang, #kegiatan, dll.
+      history.pushState(null, "", "#" + targetId);
 
-      const section = document.querySelector(target);
-
-      if (!section) return;
-
-      // Mulai animasi
-      document.body.classList.add("is-transitioning");
-
-      cover.classList.remove("transition-out");
-      cover.classList.add("transition-in");
-
-      // Setelah layar tertutup
-      setTimeout(function () {
-
-        section.scrollIntoView({
-          behavior: "instant",
-          block: "start"
-        });
-
-        // Buka kembali layar
-        setTimeout(function () {
-
-          cover.classList.remove("transition-in");
-          cover.classList.add("transition-out");
-
-          // Bersihkan setelah animasi selesai
-          setTimeout(function () {
-            document.body.classList.remove("is-transitioning");
-            cover.classList.remove("transition-out");
-          }, 650);
-
-        }, 150);
-
-      }, 550);
+      jalankanTransisi(targetId);
 
     });
+
+  });
+
+  // Tombol hero yang menuju section
+  const heroLinks = document.querySelectorAll(
+    '.hero .button[href^="#"]'
+  );
+
+  heroLinks.forEach(function (link) {
+
+    link.addEventListener("click", function (event) {
+
+      event.preventDefault();
+
+      const targetId = this.getAttribute("href").replace("#", "");
+
+      if (!sectionIds.includes(targetId)) {
+        return;
+      }
+
+      history.pushState(null, "", "#" + targetId);
+
+      jalankanTransisi(targetId);
+
+    });
+
+  });
+
+  // Tombol Back / Forward browser
+  window.addEventListener("popstate", function () {
+
+    const hash = window.location.hash.replace("#", "");
+
+    if (sectionIds.includes(hash)) {
+      tampilkanSection(hash);
+    } else {
+      tampilkanSection("beranda");
+    }
 
   });
 
