@@ -213,24 +213,73 @@ function salinAlamat() {
     return;
   }
 
-  const teksAlamat = alamat.innerText.trim();
+  /* =========================================
+   SALIN ALAMAT PMKRI
+   ========================================= */
 
-  navigator.clipboard.writeText(teksAlamat)
-    .then(function () {
+window.salinAlamat = function () {
+
+  const alamatElement = document.getElementById("alamatPMKRI");
+
+  if (!alamatElement) {
+    alert("Alamat PMKRI tidak ditemukan.");
+    return;
+  }
+
+  const alamat = alamatElement.innerText
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // Cara utama
+  if (navigator.clipboard && window.isSecureContext) {
+
+    navigator.clipboard.writeText(alamat)
+      .then(function () {
+        alert("Alamat berhasil disalin!");
+      })
+      .catch(function () {
+        salinDenganCaraLama(alamat);
+      });
+
+  } else {
+
+    salinDenganCaraLama(alamat);
+
+  }
+};
+
+
+function salinDenganCaraLama(teks) {
+
+  const textarea = document.createElement("textarea");
+
+  textarea.value = teks;
+
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  textarea.style.top = "0";
+
+  document.body.appendChild(textarea);
+
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
+
+  try {
+
+    const berhasil = document.execCommand("copy");
+
+    if (berhasil) {
       alert("Alamat berhasil disalin!");
-    })
-    .catch(function () {
+    } else {
+      alert("Alamat belum berhasil disalin. Silakan coba lagi.");
+    }
 
-      const textarea = document.createElement("textarea");
+  } catch (error) {
 
-      textarea.value = teksAlamat;
-      document.body.appendChild(textarea);
+    alert("Alamat belum berhasil disalin. Silakan coba lagi.");
 
-      textarea.select();
-      document.execCommand("copy");
+  }
 
-      textarea.remove();
-
-      alert("Alamat berhasil disalin!");
-    });
+  document.body.removeChild(textarea);
 }
