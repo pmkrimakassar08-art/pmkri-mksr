@@ -2558,3 +2558,9 @@ body.transition-lock {
     left: 0;
     right: 0;
 }
+/* KUNCI HALAMAN SAAT TRANSISI */
+html.transition-lock,
+body.transition-lock {
+    overflow: hidden !important;
+    overscroll-behavior: none !important;
+}
