@@ -2195,3 +2195,209 @@ button[onclick*="WhatsApp"]:hover {
     font-size: 13px;
   }
 }
+/* =================================================
+   PERBAIKAN KONTAK PMKRI - LEBIH KECIL & RAPI
+   ================================================= */
+
+/* 3 KARTU KONTAK */
+.contact-grid {
+  max-width: 1000px !important;
+  margin: 20px auto 25px !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+
+  gap: 14px !important;
+}
+
+.contact-card {
+  min-height: 95px !important;
+
+  padding: 15px 18px !important;
+
+  border-radius: 14px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  gap: 10px !important;
+
+  box-sizing: border-box !important;
+
+  text-decoration: none !important;
+}
+
+/* IKON / EMOJI */
+.contact-card h3 {
+  margin: 0 !important;
+
+  font-size: 18px !important;
+
+  line-height: 1.2 !important;
+
+  white-space: nowrap !important;
+}
+
+.contact-card p {
+  margin: 0 !important;
+
+  font-size: 13px !important;
+
+  line-height: 1.35 !important;
+}
+
+
+/* =================================================
+   KOTAK ALAMAT
+   ================================================= */
+
+.alamat-box {
+  max-width: 1000px !important;
+
+  margin: 20px auto !important;
+
+  padding: 18px 22px !important;
+
+  border-radius: 14px !important;
+
+  box-sizing: border-box !important;
+}
+
+.alamat-box p {
+  margin: 0 0 12px !important;
+
+  font-size: 15px !important;
+
+  line-height: 1.4 !important;
+}
+
+
+/* TOMBOL SALIN ALAMAT */
+.alamat-box button {
+  padding: 7px 14px !important;
+
+  border-radius: 18px !important;
+
+  font-size: 12px !important;
+
+  font-weight: 700 !important;
+
+  min-width: auto !important;
+
+  width: auto !important;
+}
+
+
+/* =================================================
+   FORM KIRIM PESAN
+   ================================================= */
+
+.form-kontak {
+  max-width: 1000px !important;
+
+  margin: 20px auto !important;
+
+  padding: 22px !important;
+
+  border-radius: 14px !important;
+
+  box-sizing: border-box !important;
+}
+
+.form-kontak h3 {
+  font-size: 20px !important;
+
+  margin-bottom: 14px !important;
+}
+
+.form-kontak input,
+.form-kontak textarea {
+  font-size: 14px !important;
+
+  padding: 9px 12px !important;
+
+  border-radius: 8px !important;
+}
+
+
+/* TOMBOL KIRIM WHATSAPP */
+.form-kontak button {
+  width: auto !important;
+
+  min-width: auto !important;
+
+  padding: 7px 14px !important;
+
+  border-radius: 18px !important;
+
+  font-size: 12px !important;
+
+  font-weight: 700 !important;
+}
+
+
+/* =================================================
+   HP
+   ================================================= */
+
+@media (max-width: 768px) {
+
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+
+    gap: 10px !important;
+
+    margin: 15px auto 20px !important;
+  }
+
+  .contact-card {
+    min-height: 80px !important;
+
+    padding: 12px 15px !important;
+
+    justify-content: flex-start !important;
+
+    gap: 10px !important;
+  }
+
+  .contact-card h3 {
+    font-size: 17px !important;
+  }
+
+  .contact-card p {
+    font-size: 12px !important;
+  }
+
+  .alamat-box {
+    margin: 15px auto !important;
+
+    padding: 15px !important;
+  }
+
+  .alamat-box p {
+    font-size: 14px !important;
+  }
+
+  .alamat-box button {
+    padding: 6px 12px !important;
+
+    font-size: 12px !important;
+  }
+
+  .form-kontak {
+    margin: 15px auto !important;
+
+    padding: 18px !important;
+  }
+
+  .form-kontak h3 {
+    font-size: 19px !important;
+  }
+
+  .form-kontak button {
+    padding: 7px 13px !important;
+
+    font-size: 12px !important;
+  }
+}
