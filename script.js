@@ -111,71 +111,52 @@ document.addEventListener("DOMContentLoaded", function () {
              * Tunggu sampai layar tertutup penuh.
              * Selama ini halaman TIDAK bergerak.
              */
-            setTimeout(function () {
+         setTimeout(function () {
 
-                /*
-                 * Buka kunci sebentar,
-                 * pindahkan posisi halaman,
-                 * lalu kunci lagi di posisi baru.
-                 */
-                document.documentElement.classList.remove(
-                    "transition-lock"
-                );
+    /*
+     * Layar sudah tertutup penuh.
+     * JANGAN buka kunci halaman.
+     */
 
-                document.body.classList.remove(
-                    "transition-lock"
-                );
+    /* Simpan posisi tujuan */
+    posisiScroll = targetY;
 
-                document.body.style.top = "";
-
-
-                /* Matikan smooth scroll sementara */
-                const scrollBehavior =
-                    document.documentElement.style.scrollBehavior;
-
-                document.documentElement.style.scrollBehavior = "auto";
+    /*
+     * Geser halaman secara visual menggunakan
+     * posisi body yang sudah fixed.
+     */
+    document.body.style.top = `-${targetY}px`;
 
 
-                /* Pindahkan halaman TANPA animasi */
-                window.scrollTo(0, targetY);
+    /*
+     * Sekarang buka layar.
+     */
+    setTimeout(function () {
+
+        cover.classList.remove("transition-in");
+        cover.classList.add("transition-out");
 
 
-                /* Kunci lagi di posisi tujuan */
-                kunciHalaman(targetY);
+        /*
+         * Tunggu animasi keluar selesai.
+         */
+        setTimeout(function () {
 
+            cover.classList.remove("transition-out");
 
-                /* Kembalikan pengaturan scroll */
-                document.documentElement.style.scrollBehavior =
-                    scrollBehavior;
+            bukaHalaman();
 
+            sedangTransisi = false;
 
-                /*
-                 * Sekarang buka layar
-                 */
-                setTimeout(function () {
+            document.body.classList.remove(
+                "is-transitioning"
+            );
 
-                    cover.classList.remove("transition-in");
-                    cover.classList.add("transition-out");
+        }, 650);
 
+    }, 100);
 
-                    /*
-                     * Tunggu animasi keluar selesai
-                     */
-                    setTimeout(function () {
-
-                        cover.classList.remove("transition-out");
-
-                        bukaHalaman();
-
-                        sedangTransisi = false;
-                        document.body.classList.remove("is-transitioning");
-
-                    }, 650);
-
-                }, 100);
-
-            }, 600);
-
+}, 600);
         });
 
     });
