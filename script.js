@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ========================================= */
 
     kunciHalaman(0);
-
+    document.body.classList.add("is-transitioning");
     cover.classList.add("transition-in");
 
     setTimeout(function () {
@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             sedangTransisi = true;
+            document.body.classList.add("is-transitioning");
 
 
             /* Posisi tujuan */
@@ -167,6 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         bukaHalaman();
 
                         sedangTransisi = false;
+                        document.body.classList.remove("is-transitioning");
 
                     }, 650);
 
