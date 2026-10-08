@@ -180,6 +180,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+    /* =========================================
+   PAKSA POSISI SCROLL SAAT TRANSISI
+   ========================================= */
+
+window.addEventListener("scroll", function () {
+
+    if (sedangTransisi) {
+        window.scrollTo(0, posisiScroll);
+    }
+
+});
+
 
     /* =========================================
        BLOKIR SCROLL MOUSE
