@@ -42,6 +42,7 @@ textarea {
   font: inherit;
 }
 
+
 .container {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
@@ -53,13 +54,14 @@ header {
   z-index: 1000;
 }
 
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 80px;
-  background: linear-gradient(90deg, var(--maroon-dark), var(--maroon));
-  border-bottom: 2px solid rgba(245, 197, 24, 0.85);
+background: linear-gradient(90deg, var(--maroon-dark), var(--maroon));
+border-bottom: 2px solid rgba(245, 197, 24, 0.85);
 }
 
 .logo {
