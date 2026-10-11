@@ -1,1 +1,225 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#650000">
+    <title>Dashboard Admin | PMKRI Makassar</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
 
+    <!-- HEADER -->
+    <header class="topbar">
+        <div class="brand">
+            <img src="logo.jpg.png" alt="Logo PMKRI"
+                 onerror="this.style.display='none'">
+            <div>
+                <h2>PMKRI Makassar</h2>
+                <small>Sanctus Albertus Magnus</small>
+            </div>
+        </div>
+
+        <div class="admin-profile">
+            <span class="notification">♧</span>
+            <span class="avatar">👤</span>
+            <div>
+                <strong>Administrator</strong>
+                <small>Panel Pengelola</small>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <p class="menu-label">MENU UTAMA</p>
+
+            <a class="menu-link active" href="#beranda">⌂ <span>Beranda</span></a>
+            <a class="menu-link" href="#tentang">▤ <span>Tentang</span></a>
+            <a class="menu-link" href="#kegiatan">▦ <span>Kegiatan</span></a>
+            <a class="menu-link" href="#pengurus">♙ <span>Pengurus</span></a>
+            <a class="menu-link" href="#kontak">☎ <span>Kontak</span></a>
+
+            <p class="menu-label">ADMINISTRASI</p>
+
+            <a class="menu-link" href="#artikel">▧ <span>Artikel</span></a>
+            <a class="menu-link" href="#agenda">▦ <span>Agenda</span></a>
+            <a class="menu-link" href="#galeri">▣ <span>Galeri</span></a>
+            <a class="menu-link" href="#pengaturan">⚙ <span>Pengaturan</span></a>
+
+            <div class="sidebar-motto">
+                <div class="motto-emblem">✚</div>
+                <p>PRO ECCLESIA<br>ET PATRIA</p>
+                <small>Sanctus Albertus Magnus</small>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content" id="beranda">
+
+            <section class="welcome-section">
+                <div>
+                    <p class="eyebrow">PANEL ADMINISTRATOR</p>
+                    <h1>Selamat Datang, Administrator 👋</h1>
+                    <p>Kelola dan pantau aktivitas PMKRI Cabang Makassar.</p>
+                </div>
+
+                <div class="date-card">
+                    <span>▦</span>
+                    <div>
+                        <strong id="current-date">Dashboard PMKRI</strong>
+                        <small id="current-time">Memuat waktu...</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATISTICS -->
+            <section class="stats-grid">
+
+                <article class="stat-card">
+                    <div class="stat-icon maroon">♙</div>
+                    <div>
+                        <p>Total Pengurus</p>
+                        <h2>36</h2>
+                        <small>Data contoh dashboard</small>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon gold">▦</div>
+                    <div>
+                        <p>Total Kegiatan</p>
+                        <h2>12</h2>
+                        <small>Data contoh dashboard</small>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon brown">▤</div>
+                    <div>
+                        <p>Total Artikel</p>
+                        <h2>8</h2>
+                        <small>Data contoh dashboard</small>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon maroon">▣</div>
+                    <div>
+                        <p>Total Galeri</p>
+                        <h2>24</h2>
+                        <small>Data contoh dashboard</small>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- CHART AND ACTIVITIES -->
+            <section class="content-grid">
+
+                <article class="panel chart-panel">
+                    <div class="panel-heading">
+                        <h2>▥ Ringkasan Aktivitas</h2>
+                        <span class="legend">● Kegiatan &nbsp; ● Pengurus</span>
+                    </div>
+
+                    <div class="chart">
+                        <div class="chart-row">
+                            <span>Jan</span><div class="bar maroon-bar" style="height:25%"></div><div class="bar gold-bar" style="height:35%"></div>
+                        </div>
+                        <div class="chart-row">
+                            <span>Feb</span><div class="bar maroon-bar" style="height:45%"></div><div class="bar gold-bar" style="height:40%"></div>
+                        </div>
+                        <div class="chart-row">
+                            <span>Mar</span><div class="bar maroon-bar" style="height:50%"></div><div class="bar gold-bar" style="height:60%"></div>
+                        </div>
+                        <div class="chart-row">
+                            <span>Apr</span><div class="bar maroon-bar" style="height:42%"></div><div class="bar gold-bar" style="height:55%"></div>
+                        </div>
+                        <div class="chart-row">
+                            <span>Mei</span><div class="bar maroon-bar" style="height:38%"></div><div class="bar gold-bar" style="height:58%"></div>
+                        </div>
+                        <div class="chart-row">
+                            <span>Jun</span><div class="bar maroon-bar" style="height:30%"></div><div class="bar gold-bar" style="height:35%"></div>
+                        </div>
+                        <div class="chart-row">
+                            <span>Jul</span><div class="bar maroon-bar" style="height:42%"></div><div class="bar gold-bar" style="height:48%"></div>
+                        </div>
+                        <div class="chart-row">
+                            <span>Agu</span><div class="bar maroon-bar" style="height:65%"></div><div class="bar gold-bar" style="height:65%"></div>
+                        </div>
+                        <div class="chart-row">
+                            <span>Sep</span><div class="bar maroon-bar" style="height:80%"></div><div class="bar gold-bar" style="height:65%"></div>
+                        </div>
+                        <div class="chart-row">
+                            <span>Okt</span><div class="bar maroon-bar" style="height:70%"></div><div class="bar gold-bar" style="height:90%"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="panel activity-panel">
+                    <div class="panel-heading">
+                        <h2>Aktivitas Terbaru</h2>
+                    </div>
+
+                    <div class="activity-item">
+                        <span class="activity-icon">▦</span>
+                        <div>
+                            <strong>Rapat Pengurus</strong>
+                            <p>Catat kegiatan terbaru di sini.</p>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <span class="activity-icon gold">▤</span>
+                        <div>
+                            <strong>Artikel Organisasi</strong>
+                            <p>Informasi dan berita PMKRI.</p>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <span class="activity-icon">▣</span>
+                        <div>
+                            <strong>Dokumentasi Kegiatan</strong>
+                            <p>Foto kegiatan organisasi.</p>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <span class="activity-icon gold">♙</span>
+                        <div>
+                            <strong>Data Pengurus</strong>
+                            <p>Informasi struktur kepengurusan.</p>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- ORGANIZATION BANNER -->
+            <section class="organization-banner">
+                <div class="banner-symbol">✚</div>
+                <div class="banner-text">
+                    <h2>PMKRI Cabang Makassar</h2>
+                    <strong>Sanctus Albertus Magnus</strong>
+                    <p>Berpikir kritis, bertindak solider, dan mengabdi bagi bangsa.</p>
+                </div>
+                <a href="index.html" class="public-link">Lihat Website Publik →</a>
+            </section>
+
+            <footer class="footer">
+                <p>© <span id="current-year"></span> PMKRI Cabang Makassar.</p>
+                <span>Sanctus Albertus Magnus</span>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
+```
