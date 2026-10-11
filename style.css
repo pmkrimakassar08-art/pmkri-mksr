@@ -1142,5 +1142,101 @@ footer a:hover {
     transition: none;
   }
 }
+```css
+/* FONT LEBIH KECIL - WEBSITE PMKRI MAKASSAR */
+
+body {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Navbar */
+.logo span {
+    font-size: 18px;
+}
+
+.nav-links a {
+    font-size: 12px;
+    padding: 8px 10px;
+}
+
+/* Judul beranda */
+.hero h1 {
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.2;
+}
+
+.hero h2 {
+    font-size: 21px;
+}
+
+.hero .tagline {
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* Deskripsi beranda */
+.hero-content > p:not(.tagline) {
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Judul bagian */
+.section h2 {
+    font-size: 27px;
+}
+
+.section h3 {
+    font-size: 17px;
+}
+
+/* Isi konten */
+.section p {
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Tombol */
+.button {
+    font-size: 13px;
+    padding: 11px 23px;
+}
+
+/* Tampilan HP */
+@media (max-width: 600px) {
+    .logo span {
+        font-size: 15px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+        padding: 7px 8px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero h2 {
+        font-size: 18px;
+    }
+
+    .hero-content > p:not(.tagline) {
+        font-size: 13px;
+    }
+
+    .section h2 {
+        font-size: 23px;
+    }
+
+    .section h3 {
+        font-size: 16px;
+    }
+
+    .section p {
+        font-size: 12px;
+    }
+}
+
 
 
