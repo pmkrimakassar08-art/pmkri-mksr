@@ -42,7 +42,6 @@ textarea {
   font: inherit;
 }
 
-
 .container {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
@@ -54,14 +53,13 @@ header {
   z-index: 1000;
 }
 
-
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 80px;
-background: linear-gradient(90deg, var(--maroon-dark), var(--maroon));
-border-bottom: 2px solid rgba(245, 197, 24, 0.85);
+  background: linear-gradient(90deg, var(--maroon-dark), var(--maroon));
+  border-bottom: 2px solid rgba(245, 197, 24, 0.85);
 }
 
 .logo {
@@ -124,7 +122,7 @@ border-bottom: 2px solid rgba(245, 197, 24, 0.85);
   text-align: center;
   background:
     linear-gradient(rgba(72, 0, 0, 0.45), rgba(72, 0, 0, 0.55)),
-    url("background.png.png") center/cover no-repeat;
+    url("background.png") center/cover no-repeat;
 }
 
 .hero-content {
@@ -595,12 +593,6 @@ footer {
     min-height: 70vh;
   }
 }
-```css
-/* ==========================================
-   REDESIGN PREMIUM PMKRI MAKASSAR
-   Marun • Putih • Emas
-   Tambahkan di bagian PALING BAWAH style.css
-========================================== */
 
 :root {
   --pmkri-marun: #650000;
@@ -613,8 +605,6 @@ footer {
   --pmkri-text: #302727;
   --pmkri-muted: #746a67;
 }
-
-/* DASAR WEBSITE */
 
 html {
   scroll-behavior: smooth;
@@ -631,8 +621,6 @@ body {
 img {
   max-width: 100%;
 }
-
-/* NAVBAR PREMIUM */
 
 header {
   position: sticky;
@@ -697,9 +685,7 @@ header {
   font-weight: 600;
   text-decoration: none;
   border-radius: 7px;
-  transition:
-    color 0.25s ease,
-    background 0.25s ease;
+  transition: color 0.25s ease, background 0.25s ease;
 }
 
 .nav-links a:hover,
@@ -707,10 +693,6 @@ header {
   color: var(--pmkri-gold-light);
   background: rgba(255, 255, 255, 0.09);
 }
-
-/* BERANDA / HERO
-   Pertahankan background foto dari CSS lama.
-   Kita hanya memperbaiki tata letak dan teks. */
 
 .hero {
   position: relative;
@@ -722,6 +704,9 @@ header {
   text-align: center;
   overflow: hidden;
   scroll-margin-top: 88px;
+  background:
+    linear-gradient(rgba(81, 0, 0, 0.60), rgba(81, 0, 0, 0.72)),
+    url("background.png") center center / cover no-repeat;
 }
 
 .hero-content {
@@ -768,8 +753,6 @@ header {
   line-height: 1.9;
 }
 
-/* GARIS EMAS DEKORATIF */
-
 .hero h2::after {
   content: "";
   display: block;
@@ -777,21 +760,12 @@ header {
   height: 4px;
   margin: 22px auto 0;
   border-radius: 10px;
-  background: linear-gradient(
-    90deg,
-    var(--pmkri-gold),
-    var(--pmkri-gold-light)
-  );
+  background: linear-gradient(90deg, var(--pmkri-gold), var(--pmkri-gold-light));
 }
-
-/* TOMBOL */
 
 .button,
 button {
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .button {
@@ -816,8 +790,6 @@ button {
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
 }
 
-/* BAGIAN KONTEN */
-
 section.section,
 section[id="tentang"],
 section[id="kegiatan"],
@@ -840,8 +812,6 @@ section[id="kontak"] {
   margin-left: auto;
   margin-right: auto;
 }
-
-/* JUDUL BAGIAN */
 
 .section h2,
 .tentang-section h2,
@@ -869,8 +839,6 @@ section[id="kontak"] {
   font-size: 16px;
   line-height: 1.9;
 }
-
-/* TENTANG: TOMBOL TAB */
 
 .about-tabs,
 .tentang-menu {
@@ -903,8 +871,6 @@ section[id="kontak"] {
   box-shadow: 0 5px 15px rgba(101, 0, 0, 0.12);
 }
 
-/* PANEL INFORMASI */
-
 .about-panel,
 .tentang-content {
   border: 1px solid #eee4dc;
@@ -928,8 +894,6 @@ section[id="kontak"] {
   line-height: 1.9;
 }
 
-/* KARTU KONTEN UMUM */
-
 .card,
 .kegiatan-card,
 .activity-card,
@@ -940,9 +904,7 @@ section[id="kontak"] {
   border-radius: 12px;
   background: var(--pmkri-white);
   box-shadow: 0 5px 22px rgba(55, 0, 0, 0.055);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover,
@@ -953,8 +915,6 @@ section[id="kontak"] {
   transform: translateY(-5px);
   box-shadow: 0 14px 32px rgba(55, 0, 0, 0.12);
 }
-
-/* BAGAN PENGURUS */
 
 #pengurus h2,
 #pengurus h3 {
@@ -968,8 +928,6 @@ section[id="kontak"] {
   box-shadow: 0 5px 18px rgba(55, 0, 0, 0.07);
 }
 
-/* KONTAK */
-
 #kontak a {
   overflow-wrap: anywhere;
 }
@@ -978,8 +936,6 @@ section[id="kontak"] {
 #kontak .button {
   border-radius: 8px;
 }
-
-/* FOOTER */
 
 footer {
   padding: 35px 24px;
@@ -995,248 +951,3 @@ footer a {
 footer a:hover {
   color: var(--pmkri-white);
 }
-
-/* JANGAN GANGGU ANIMASI TRANSISI YANG SUDAH ADA.
-   Aturan .page-transition dan .transition-cover
-   sengaja tidak ditimpa di sini. */
-
-/* RESPONSIVE TABLET */
-
-@media (max-width: 900px) {
-  .navbar {
-    padding: 12px 20px;
-    gap: 12px;
-  }
-
-  .logo span {
-    font-size: 19px;
-  }
-
-  .logo img {
-    width: 49px;
-    height: 49px;
-  }
-
-  .nav-links {
-    gap: 2px;
-  }
-
-  .nav-links a {
-    padding: 9px 10px;
-    font-size: 12px;
-  }
-
-  .hero {
-    min-height: 570px;
-    padding: 80px 22px;
-  }
-
-  .section {
-    padding: 65px 22px;
-  }
-}
-
-/* RESPONSIVE HP */
-
-@media (max-width: 600px) {
-  .navbar {
-    min-height: 76px;
-    padding: 10px 14px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    gap: 9px;
-  }
-
-  .logo img {
-    width: 42px;
-    height: 42px;
-  }
-
-  .logo span {
-    font-size: 16px;
-  }
-
-  .nav-links {
-    width: 100%;
-    justify-content: center;
-    gap: 3px;
-  }
-
-  .nav-links a {
-    padding: 7px 9px;
-    font-size: 11px;
-  }
-
-  .hero {
-    min-height: 560px;
-    padding: 75px 18px;
-  }
-
-  .hero .tagline {
-    letter-spacing: 1.5px;
-    font-size: 11px;
-  }
-
-  .hero h1 {
-    letter-spacing: -0.8px;
-  }
-
-  .hero-content > p:not(.tagline) {
-    line-height: 1.8;
-  }
-
-  .button {
-    padding: 13px 25px;
-    font-size: 14px;
-  }
-
-  .section {
-    padding: 55px 17px;
-  }
-
-  .section-intro,
-  .tentang-intro {
-    font-size: 14px;
-  }
-
-  .about-panel,
-  .tentang-content {
-    padding: 20px 16px;
-  }
-
-  .about-panel h3,
-  .tentang-content h3 {
-    font-size: 19px;
-  }
-
-  .about-tabs,
-  .tentang-menu {
-    gap: 8px;
-  }
-
-  .about-btn,
-  .tentang-btn {
-    padding: 10px 15px;
-    font-size: 12px;
-  }
-
-  footer {
-    padding: 28px 18px;
-  }
-}
-
-/* HORMATI PENGATURAN REDUKSI ANIMASI PENGGUNA */
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .card,
-  .button,
-  .nav-links a,
-  .logo img {
-    transition: none;
-  }
-}
-```css
-/* FONT LEBIH KECIL - WEBSITE PMKRI MAKASSAR */
-
-body {
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-/* Navbar */
-.logo span {
-    font-size: 18px;
-}
-
-.nav-links a {
-    font-size: 12px;
-    padding: 8px 10px;
-}
-
-/* Judul beranda */
-.hero h1 {
-    font-size: clamp(30px, 4vw, 48px);
-    line-height: 1.2;
-}
-
-.hero h2 {
-    font-size: 21px;
-}
-
-.hero .tagline {
-    font-size: 11px;
-    letter-spacing: 2px;
-}
-
-/* Deskripsi beranda */
-.hero-content > p:not(.tagline) {
-    font-size: 14px;
-    line-height: 1.7;
-}
-
-/* Judul bagian */
-.section h2 {
-    font-size: 27px;
-}
-
-.section h3 {
-    font-size: 17px;
-}
-
-/* Isi konten */
-.section p {
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-/* Tombol */
-.button {
-    font-size: 13px;
-    padding: 11px 23px;
-}
-
-/* Tampilan HP */
-@media (max-width: 600px) {
-    .logo span {
-        font-size: 15px;
-    }
-
-    .nav-links a {
-        font-size: 10px;
-        padding: 7px 8px;
-    }
-
-    .hero h1 {
-        font-size: 30px;
-    }
-
-    .hero h2 {
-        font-size: 18px;
-    }
-
-    .hero-content > p:not(.tagline) {
-        font-size: 13px;
-    }
-
-    .section h2 {
-        font-size: 23px;
-    }
-
-    .section h3 {
-        font-size: 16px;
-    }
-
-    .section p {
-        font-size: 12px;
-    }
-}
-
-
-
