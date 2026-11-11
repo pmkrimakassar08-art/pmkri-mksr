@@ -1,343 +1,375 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-<title>PMKRI Cabang Makassar Sanctus Albertus Magnus</title>
-
-<meta
-  name="description"
-  content="Website resmi PMKRI Cabang Makassar Sanctus Albertus Magnus. Kenali sejarah organisasi, struktur kepengurusan, kegiatan sosial, advokasi kemasyarakatan, dan informasi kontak resmi PMKRI Makassar."
-/>
-    
-<meta name="robots" content="index, follow" />
-
-    <link
-  rel="canonical"
-  href="https://pmkrimakassar08-art.github.io/pmkri-mksr/"
-/>
-
-<meta name="robots" content="index, follow" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="icon" type="image/png" href="logo.jpg.png" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <nav class="navbar container" aria-label="Navigasi utama">
-        <div class="logo">
-          <img src="logo.jpg.png" alt="Logo PMKRI Makassar" />
-          <span>PMKRI Makassar</span>
-        </div>
-
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#281216">
+  <meta name="description" content="Situs resmi PMKRI Cabang Makassar Sanctus Albertus Magnus. Kenali sejarah, kegiatan, dan pengurus, serta hubungi PMKRI Makassar.">
+  <meta property="og:title" content="PMKRI Cabang Makassar | Sanctus Albertus Magnus">
+  <meta property="og:description" content="Kenali sejarah, kegiatan, dan pengurus PMKRI Cabang Makassar.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pmkrimakassar08-art.github.io/pmkri-mksr/">
+  <meta property="og:image" content="https://pmkrimakassar08-art.github.io/pmkri-mksr/background.png">
+  <title>PMKRI Cabang Makassar | Sanctus Albertus Magnus</title>
+  <link rel="canonical" href="https://pmkrimakassar08-art.github.io/pmkri-mksr/">
+  <link rel="icon" type="image/png" href="assets/logo-pmkri.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten</a>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navigasi utama">
+      <a class="brand" href="#beranda">
+        <img src="assets/logo-pmkri.png" width="48" height="48" alt="">
+        <span>
+          <strong>PMKRI Makassar</strong>
+          <small>Sanctus Albertus Magnus</small>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="navigasi" aria-expanded="false" hidden>
+        <span class="menu-mark" aria-hidden="true"><span></span></span>
+        Menu
+      </button>
+      <div class="nav-content" id="navigasi">
         <ul class="nav-links">
-          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#beranda" aria-current="location">Beranda</a></li>
           <li><a href="#tentang">Tentang</a></li>
           <li><a href="#kegiatan">Kegiatan</a></li>
           <li><a href="#pengurus">Pengurus</a></li>
           <li><a href="#kontak">Kontak</a></li>
         </ul>
-      </nav>
-    </header>
+      </div>
+      <a class="button button-header" href="#kontak">Hubungi Kami <span class="arrow arrow-up-right" aria-hidden="true"></span></a>
+    </nav>
+  </header>
 
-    <main>
-      <section id="beranda" class="hero">
-        <div class="hero-content reveal reveal-delay-1">
-          <p class="tagline">Perhimpunan Mahasiswa Katolik Republik Indonesia</p>
-          <h1>PMKRI Cabang Makassar</h1>
-          <h2>Sanctus Albertus Magnus</h2>
-          <p>
-            Wadah pembinaan, kaderisasi, dan pengembangan intelektualitas bagi mahasiswa
-            Katolik di Makassar serta Sulawesi Selatan.
-          </p>
-          <a href="#tentang" class="button">Selengkapnya</a>
+  <main id="konten" tabindex="-1">
+    <section id="beranda" class="hero" aria-labelledby="judul-beranda">
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow eyebrow-light hero-eyebrow">Perhimpunan Mahasiswa Katolik Republik Indonesia</p>
+          <h1 id="judul-beranda">PMKRI Cabang <em>Makassar</em></h1>
+          <p class="hero-patron">Sanctus Albertus Magnus</p>
+          <p class="hero-description">Wadah pembinaan, kaderisasi, dan pengembangan intelektualitas bagi mahasiswa Katolik di Makassar serta Sulawesi Selatan.</p>
+          <div class="hero-actions">
+            <a class="button button-gold" href="#tentang">Kenali PMKRI <span class="arrow arrow-down" aria-hidden="true"></span></a>
+            <a class="button button-outline-light" href="#kegiatan">Lihat Kegiatan <span class="arrow arrow-up-right" aria-hidden="true"></span></a>
+          </div>
         </div>
-      </section>
 
-      <section id="tentang" class="section about-section">
-        <div class="container">
-          <p class="eyebrow">Mengenal Kami</p>
-          <h2>Tentang PMKRI</h2>
-          <p class="section-intro">
-            Mengenal lebih dekat sejarah, visi, dan misi PMKRI Cabang Makassar Sanctus
-            Albertus Magnus.
-          </p>
+        <figure class="hero-figure">
+          <div class="hero-photo">
+            <img src="assets/foto-pmkri.webp" alt="Foto bersama anggota PMKRI Cabang Makassar" width="1500" height="1064" fetchpriority="high">
+          </div>
+          <figcaption>
+            <span class="figure-rule" aria-hidden="true"></span>
+            Dokumentasi PMKRI Makassar
+          </figcaption>
+        </figure>
+      </div>
+      <div class="identity-bar">
+        <div class="container identity-layout">
+          <div class="identity-date">
+            <div>
+              <span class="identity-label">Berdiri di Makassar</span>
+              <time datetime="1955-09-11">11 September 1955</time>
+            </div>
+          </div>
+          <a href="#visi" class="identity-values">
+            <div>
+              <span class="identity-label">Tiga Benang Merah</span>
+              <span class="values-line">Intelektualitas <span aria-hidden="true">·</span> Kristianitas <span aria-hidden="true">·</span> Fraternitas</span>
+            </div>
+            <span class="round-arrow" aria-hidden="true"><span class="arrow arrow-up-right"></span></span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-          <div class="about-tabs reveal reveal-delay-1">
-            <button class="about-btn active" type="button" data-target="sejarah">Sejarah</button>
-            <button class="about-btn" type="button" data-target="visi">Visi</button>
-            <button class="about-btn" type="button" data-target="misi">Misi</button>
+    <section id="tentang" class="section about-section" aria-labelledby="judul-tentang">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="eyebrow">Mengenal Kami</p>
+            <h2 id="judul-tentang">Tentang PMKRI</h2>
+          </div>
+          <p>Kenali sejarah, visi, dan misi PMKRI Cabang Makassar Sanctus Albertus Magnus.</p>
+        </div>
+
+        <div class="about-layout">
+          <div class="tab-list" data-about-tabs aria-label="Profil PMKRI" hidden>
+            <button type="button" id="tab-sejarah" data-panel="sejarah">Sejarah <span class="arrow arrow-up-right" aria-hidden="true"></span></button>
+            <button type="button" id="tab-visi" data-panel="visi">Visi <span class="arrow arrow-up-right" aria-hidden="true"></span></button>
+            <button type="button" id="tab-misi" data-panel="misi">Misi <span class="arrow arrow-up-right" aria-hidden="true"></span></button>
           </div>
 
           <div class="about-panels">
-            <article id="sejarah" class="about-panel active reveal reveal-delay-2">
-              <h3>📖 Sejarah PMKRI Cabang Makassar</h3>
-              <p>
-                <strong>Perhimpunan Mahasiswa Katolik Republik Indonesia (PMKRI)</strong>
-                Cabang Makassar Sanctus Albertus Magnus didirikan secara resmi pada
-                <strong>11 September 1955</strong>.
-              </p>
-              <p>
-                Kehadiran PMKRI Cabang Makassar menjadi wadah pembinaan, kaderisasi,
-                pengembangan intelektual, serta perjuangan mahasiswa Katolik yang menempuh
-                pendidikan tinggi di Makassar dan Sulawesi Selatan.
-              </p>
-
-              <h4>🏛️ Latar Belakang</h4>
-              <p>
-                Secara nasional, PMKRI lahir di Yogyakarta pada <strong>25 Mei 1947</strong>.
-                Dalam perkembangannya, gerakan mahasiswa Katolik terus berkembang ke berbagai
-                wilayah di Indonesia, termasuk Indonesia Timur.
-              </p>
-              <p>
-                Pertumbuhan perguruan tinggi dan meningkatnya jumlah mahasiswa Katolik di
-                Makassar pada dekade 1950-an mendorong perlunya wadah organisasi yang mampu
-                mengembangkan kehidupan intelektual, iman, persaudaraan, dan kepedulian
-                terhadap persoalan masyarakat.
-              </p>
-
-              <h4>👥 Tokoh Pendiri</h4>
-              <ul class="info-list">
-                <li>A. T. Pailang</li>
-                <li>Prof. Agnes Toar</li>
-                <li>dr. Piet Nara</li>
-                <li>Syamsul Abadi</li>
-                <li>Mgr. Frans van Roosel, CICM</li>
-              </ul>
-
-              <h4>📍 Identitas Cabang</h4>
-              <p>
-                PMKRI Cabang Makassar menggunakan nama pelindung
-                <strong>Sanctus Albertus Magnus</strong>. Santo Albertus Magnus dikenal sebagai
-                tokoh yang mencerminkan hubungan antara ilmu pengetahuan dan iman.
-              </p>
-              <p>
-                Identitas tersebut menjadi simbol penting bagi proses pembinaan kader agar
-                mampu mengembangkan kemampuan intelektual sekaligus memiliki dasar
-                spiritualitas yang kuat.
-              </p>
-
-              <div class="reference-box">
-                <h4>Sumber &amp; Referensi</h4>
-                <p>
-                  Informasi sejarah ini disusun berdasarkan beberapa sumber dan dokumen
-                  mengenai sejarah PMKRI dan PMKRI Cabang Makassar.
-                </p>
-                <a href="https://www.pmkri.web.id/blog/2010/09/sejarah-pmkri-makassar/" target="_blank" rel="noreferrer">
-                  Sejarah PMKRI Makassar
-                </a>
-                <a href="https://www.pmkri.web.id/blog/2010/09/profil-pmkri-makassar/" target="_blank" rel="noreferrer">
-                  Profil PMKRI Makassar
-                </a>
+            <article id="sejarah" class="about-panel">
+              <h3>Sejarah PMKRI Cabang Makassar</h3>
+              <p>PMKRI Cabang Makassar Sanctus Albertus Magnus didirikan secara resmi pada <strong>11 September 1955</strong>. Cabang ini menjadi wadah pembinaan, kaderisasi, pengembangan intelektual, dan perjuangan mahasiswa Katolik di Makassar serta Sulawesi Selatan.</p>
+              <div class="timeline" aria-label="Tonggak sejarah PMKRI">
+                <div>
+                  <time datetime="1947-05-25">25 Mei 1947</time>
+                  <p>PMKRI lahir secara nasional di Yogyakarta dan kemudian berkembang ke berbagai wilayah Indonesia.</p>
+                </div>
+                <div>
+                  <time datetime="1955-09-11">11 September 1955</time>
+                  <p>PMKRI Cabang Makassar berdiri di tengah pertumbuhan perguruan tinggi dan komunitas mahasiswa Katolik di Makassar.</p>
+                </div>
+              </div>
+              <p>Pertumbuhan tersebut mendorong terbentuknya wadah yang mengembangkan kehidupan intelektual, iman, persaudaraan, dan kepedulian terhadap persoalan masyarakat.</p>
+              <details class="about-detail">
+                <summary>Tokoh Pendiri <span aria-hidden="true"></span></summary>
+                <ul>
+                  <li>A. T. Pailang</li>
+                  <li>Prof. Agnes Toar</li>
+                  <li>dr. Piet Nara</li>
+                  <li>Syamsul Abadi</li>
+                  <li>Mgr. Frans van Roosel, CICM</li>
+                </ul>
+              </details>
+              <details class="about-detail">
+                <summary>Identitas Cabang <span aria-hidden="true"></span></summary>
+                <p>PMKRI Cabang Makassar menggunakan nama pelindung <strong>Sanctus Albertus Magnus</strong>. Santo Albertus Magnus mencerminkan hubungan antara ilmu pengetahuan dan iman. Nama ini mengingatkan kader untuk mengembangkan kemampuan intelektual dengan dasar spiritualitas yang kuat.</p>
+              </details>
+              <div class="reference-links">
+                <span>Sumber</span>
+                <a href="https://www.pmkri.web.id/blog/2010/09/sejarah-pmkri-makassar/" target="_blank" rel="noopener noreferrer">Sejarah PMKRI Makassar <span class="arrow arrow-up-right" aria-hidden="true"></span></a>
+                <a href="https://www.pmkri.web.id/blog/2010/09/profil-pmkri-makassar/" target="_blank" rel="noopener noreferrer">Profil PMKRI Makassar <span class="arrow arrow-up-right" aria-hidden="true"></span></a>
               </div>
             </article>
 
-            <article id="visi" class="about-panel reveal reveal-delay-2">
-              <h3>🎯 Visi PMKRI</h3>
-              <div class="quote-box">
-                <p>
-                  <strong>“Terwujudnya keadilan sosial, kemanusiaan, dan persaudaraan sejati.”</strong>
-                </p>
-              </div>
-
+            <article id="visi" class="about-panel">
+              <h3>Visi PMKRI</h3>
+              <blockquote>“Terwujudnya keadilan sosial, kemanusiaan, dan persaudaraan sejati.”</blockquote>
               <h4>Tiga Benang Merah PMKRI</h4>
               <div class="value-grid">
-                <div class="value-card">
+                <div>
                   <h5>Intelektualitas</h5>
-                  <p>
-                    Mengembangkan ilmu pengetahuan, kemampuan berpikir kritis, analitis,
-                    serta kajian ilmiah dalam memahami dan menanggapi persoalan masyarakat.
-                  </p>
+                  <p>Mengembangkan ilmu pengetahuan, cara berpikir kritis dan analitis, serta kajian ilmiah dalam memahami persoalan masyarakat.</p>
                 </div>
-                <div class="value-card">
+                <div>
                   <h5>Kristianitas</h5>
-                  <p>
-                    Menjadikan nilai-nilai iman Kristiani sebagai dasar dalam kehidupan,
-                    pelayanan, dan keterlibatan kader dalam masyarakat.
-                  </p>
+                  <p>Menjadikan nilai iman Kristiani sebagai dasar kehidupan, pelayanan, dan keterlibatan kader dalam masyarakat.</p>
                 </div>
-                <div class="value-card">
+                <div>
                   <h5>Fraternitas</h5>
-                  <p>
-                    Mengembangkan persaudaraan sejati yang menghargai martabat setiap insan
-                    tanpa membedakan suku, budaya, ras, maupun agama.
-                  </p>
+                  <p>Mengembangkan persaudaraan sejati yang menghargai martabat setiap insan tanpa membedakan suku, budaya, ras, maupun agama.</p>
                 </div>
               </div>
-
-              <div class="reference-box">
-                <h4>Sumber Visi PMKRI</h4>
-                <a href="https://www.pmkri.web.id/blog/2015/05/visi-misi-pmkri/" target="_blank" rel="noreferrer">
-                  Visi dan Misi PMKRI
-                </a>
+              <div class="reference-links">
+                <span>Sumber</span>
+                <a href="https://www.pmkri.web.id/blog/2015/05/visi-misi-pmkri/" target="_blank" rel="noopener noreferrer">Visi dan Misi PMKRI <span class="arrow arrow-up-right" aria-hidden="true"></span></a>
               </div>
             </article>
 
-            <article id="misi" class="about-panel reveal reveal-delay-2">
-              <h3>🚀 Misi PMKRI</h3>
-              <div class="quote-box">
-                <p>
-                  <strong>
-                    Berjuang dengan terlibat dan berpihak pada kaum tertindas melalui
-                    kaderisasi intelektual populis yang dijiwai nilai-nilai kekatolikan
-                    untuk mewujudkan keadilan sosial, kemanusiaan, dan persaudaraan sejati.
-                  </strong>
-                </p>
-              </div>
-
+            <article id="misi" class="about-panel">
+              <h3>Misi PMKRI</h3>
+              <blockquote>Berjuang dengan terlibat dan berpihak pada kaum tertindas melalui kaderisasi intelektual populis yang dijiwai nilai-nilai kekatolikan untuk mewujudkan keadilan sosial, kemanusiaan, dan persaudaraan sejati.</blockquote>
               <h4>Identitas Kader PMKRI</h4>
               <div class="value-grid">
-                <div class="value-card">
+                <div>
                   <h5>Sensus Catholicus</h5>
-                  <p>
-                    Kepekaan dan kedalaman dalam menghidupi nilai-nilai Kekatolikan dalam
-                    kehidupan pribadi maupun sosial.
-                  </p>
+                  <p>Kepekaan dan kedalaman dalam menghidupi nilai-nilai Kekatolikan dalam kehidupan pribadi maupun sosial.</p>
                 </div>
-                <div class="value-card">
+                <div>
                   <h5>Sensus Hominis</h5>
-                  <p>
-                    Kepekaan terhadap persoalan kemanusiaan dan panggilan untuk hadir serta
-                    berguna bagi sesama.
-                  </p>
+                  <p>Kepekaan terhadap persoalan kemanusiaan dan panggilan untuk hadir serta berguna bagi sesama.</p>
                 </div>
-                <div class="value-card">
+                <div>
                   <h5>Sensus Reipublicae</h5>
-                  <p>
-                    Kepekaan terhadap kehidupan masyarakat dan bangsa, dengan pemikiran
-                    intelektual yang berakar pada realitas sosial.
-                  </p>
+                  <p>Kepekaan terhadap kehidupan masyarakat dan bangsa, dengan pemikiran intelektual yang berakar pada realitas sosial.</p>
                 </div>
               </div>
-
-              <div class="reference-box">
-                <h4>Sumber Misi PMKRI</h4>
-                <a href="https://www.pmkri.web.id/blog/2015/05/visi-misi-pmkri/" target="_blank" rel="noreferrer">
-                  Visi dan Misi PMKRI
-                </a>
+              <div class="reference-links">
+                <span>Sumber</span>
+                <a href="https://www.pmkri.web.id/blog/2015/05/visi-misi-pmkri/" target="_blank" rel="noopener noreferrer">Visi dan Misi PMKRI <span class="arrow arrow-up-right" aria-hidden="true"></span></a>
               </div>
             </article>
           </div>
         </div>
-      </section>
-
-      <section id="kegiatan" class="section activities-section">
-        <div class="container">
-          <p class="eyebrow white">Program</p>
-          <h2>Kegiatan</h2>
-          <div class="cards reveal reveal-delay-1">
-            <article class="card">
-              <h3>Kegiatan Organisasi</h3>
-              <p>Informasi mengenai kegiatan dan agenda organisasi secara rutin dan terjadwal.</p>
-            </article>
-            <article class="card">
-              <h3>Pendidikan &amp; Kaderisasi</h3>
-              <p>Dokumentasi kegiatan pembinaan dan pengembangan potensi anggota PMKRI.</p>
-            </article>
-            <article class="card">
-              <h3>Kegiatan Sosial</h3>
-              <p>Dokumentasi kegiatan pengabdian dan kepedulian sosial bagi masyarakat.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="pengurus" class="section board-section">
-        <div class="container">
-          <p class="eyebrow">Tim Kami</p>
-          <h2>Pengurus</h2>
-          <div class="cards reveal reveal-delay-1">
-            <article class="card">
-              <h3>Ketua Presidium</h3>
-              <p>Michael Angelo Tandiayu S.H</p>
-            </article>
-            <article class="card">
-              <h3>Sekretaris Jenderal</h3>
-              <p>Edwar Supriadi</p>
-            </article>
-            <article class="card">
-              <h3>Bendahara</h3>
-              <p>Dewi</p>
-            </article>
-            <article class="card">
-              <h3>Presidium Pengembangan Organisasi</h3>
-              <p>Marianus Bengan A. Wungubelen</p>
-            </article>
-            <article class="card">
-              <h3>Presidium RISTEK</h3>
-              <p>Egianus</p>
-            </article>
-            <article class="card">
-              <h3>Presidium Gerakan Kemasyarakatan</h3>
-              <p>Alsiana Daki Duri</p>
-            </article>
-            <article class="card">
-              <h3>Presidium Keumatan</h3>
-              <p>Rini Atdjas</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="kontak" class="section contact-section">
-        <div class="container">
-          <p class="eyebrow white">Hubungi Kami</p>
-          <h2>Kontak</h2>
-
-          <div class="contact-grid reveal reveal-delay-1">
-            <a href="https://wa.me/6285185346006" target="_blank" rel="noreferrer" class="contact-card">
-              <h3><i class="fa-brands fa-whatsapp"></i> WhatsApp</h3>
-              <p>Chat langsung dengan kami</p>
-            </a>
-            <a href="https://instagram.com/pmkrimakassar" target="_blank" rel="noreferrer" class="contact-card">
-              <h3><i class="fa-brands fa-instagram"></i> Instagram</h3>
-              <p>Lihat kegiatan terbaru kami</p>
-            </a>
-            <a href="mailto:pmkrimakassar08@gmail.com" class="contact-card">
-              <h3><i class="fa-solid fa-envelope"></i> Email</h3>
-              <p>Kirim email kepada kami</p>
-            </a>
-          </div>
-
-          <div class="address-box reveal reveal-delay-2">
-            <p id="alamatPMKRI">
-              <i class="fa-solid fa-location-dot"></i>
-              Jl. Dr. Sutomo No. 08, Kota Makassar, Sulawesi Selatan.
-            </p>
-            <button type="button" onclick="salinAlamat()">Salin Alamat</button>
-          </div>
-
-          <div class="form-box reveal reveal-delay-2">
-            <h3>Kirim Pesan</h3>
-            <div class="form-group">
-              <input type="text" id="nama" placeholder="Nama" />
-            </div>
-            <div class="form-group">
-              <input type="email" id="email" placeholder="Email" />
-            </div>
-            <div class="form-group">
-              <textarea id="pesan" rows="5" placeholder="Tulis pesan..."></textarea>
-            </div>
-            <button type="button" class="wa-button" onclick="kirimWhatsApp()">Kirim via WhatsApp</button>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container footer-wrap">
-        <p>© 2026 PMKRI Cabang Makassar Sanctus Albertus Magnus</p>
       </div>
-    </footer>
+    </section>
 
-    <script src="script.js"></script>
-  </body>
+    <section id="kegiatan" class="section programs-section" aria-labelledby="judul-kegiatan">
+      <div class="container programs-layout">
+        <div class="programs-intro" data-reveal>
+          <p class="eyebrow eyebrow-light">Program</p>
+          <h2 id="judul-kegiatan">Kegiatan</h2>
+          <p>Jelajahi agenda organisasi, pembinaan anggota, dan pengabdian sosial PMKRI Makassar.</p>
+          <a class="text-link text-link-light" href="https://instagram.com/pmkrimakassar" target="_blank" rel="noopener noreferrer">Lihat dokumentasi di Instagram <span class="arrow arrow-up-right" aria-hidden="true"></span></a>
+        </div>
+        <div class="program-list" data-reveal>
+          <details class="program" name="kegiatan-pmkri" open>
+            <summary>
+              <span class="program-icon" aria-hidden="true"><i class="fa-solid fa-people-group"></i></span>
+              <span>Kegiatan Organisasi</span>
+              <span class="disclosure-icon" aria-hidden="true"></span>
+            </summary>
+            <p>Informasi mengenai kegiatan dan agenda organisasi secara rutin dan terjadwal.</p>
+          </details>
+          <details class="program" name="kegiatan-pmkri">
+            <summary>
+              <span class="program-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
+              <span>Pendidikan &amp; Kaderisasi</span>
+              <span class="disclosure-icon" aria-hidden="true"></span>
+            </summary>
+            <p>Dokumentasi kegiatan pembinaan dan pengembangan potensi anggota PMKRI.</p>
+          </details>
+          <details class="program" name="kegiatan-pmkri">
+            <summary>
+              <span class="program-icon" aria-hidden="true"><i class="fa-solid fa-hand-holding-heart"></i></span>
+              <span>Kegiatan Sosial</span>
+              <span class="disclosure-icon" aria-hidden="true"></span>
+            </summary>
+            <p>Dokumentasi kegiatan pengabdian dan kepedulian sosial bagi masyarakat.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="pengurus" class="section board-section" aria-labelledby="judul-pengurus">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="eyebrow">Tim Kami</p>
+            <h2 id="judul-pengurus">Pengurus</h2>
+          </div>
+          <div class="board-filter" data-board-filter hidden>
+            <label class="visually-hidden" for="cari-pengurus">Cari pengurus berdasarkan nama atau jabatan</label>
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input id="cari-pengurus" type="search" placeholder="Cari nama atau jabatan" autocomplete="off" aria-controls="daftar-pengurus">
+          </div>
+        </div>
+        <div class="board-grid" id="daftar-pengurus">
+          <article class="board-card board-card-lead">
+            <span class="initials" aria-hidden="true">MA</span>
+            <div>
+              <p>Ketua Presidium</p>
+              <h3>Michael Angelo Tandiayu S.H</h3>
+            </div>
+          </article>
+          <article class="board-card">
+            <span class="initials" aria-hidden="true">ES</span>
+            <div>
+              <p>Sekretaris Jenderal</p>
+              <h3>Edwar Supriadi</h3>
+            </div>
+          </article>
+          <article class="board-card">
+            <span class="initials" aria-hidden="true">D</span>
+            <div>
+              <p>Bendahara</p>
+              <h3>Dewi</h3>
+            </div>
+          </article>
+          <article class="board-card">
+            <span class="initials" aria-hidden="true">MW</span>
+            <div>
+              <p>Presidium Pengembangan Organisasi</p>
+              <h3>Marianus Bengan A. Wungubelen</h3>
+            </div>
+          </article>
+          <article class="board-card">
+            <span class="initials" aria-hidden="true">E</span>
+            <div>
+              <p>Presidium RISTEK</p>
+              <h3>Egianus</h3>
+            </div>
+          </article>
+          <article class="board-card">
+            <span class="initials" aria-hidden="true">AD</span>
+            <div>
+              <p>Presidium Gerakan Kemasyarakatan</p>
+              <h3>Alsiana Daki Duri</h3>
+            </div>
+          </article>
+          <article class="board-card">
+            <span class="initials" aria-hidden="true">RA</span>
+            <div>
+              <p>Presidium Keumatan</p>
+              <h3>Rini Atdjas</h3>
+            </div>
+          </article>
+        </div>
+        <p class="filter-empty" data-board-empty hidden>Tidak ada pengurus yang cocok. Coba nama atau jabatan lain.</p>
+        <p class="visually-hidden" data-board-status role="status"></p>
+      </div>
+    </section>
+
+    <section id="kontak" class="section contact-section" aria-labelledby="judul-kontak">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="eyebrow">Hubungi Kami</p>
+            <h2 id="judul-kontak">Kontak</h2>
+          </div>
+          <p>Untuk informasi kegiatan, keanggotaan, atau kerja sama, hubungi PMKRI Makassar melalui kanal berikut.</p>
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-channels">
+            <a class="channel" id="whatsapp-pmkri" href="https://wa.me/6285185346006" target="_blank" rel="noopener noreferrer">
+              <span class="channel-icon" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
+              <span><strong>WhatsApp</strong><small>Chat langsung dengan kami</small></span>
+              <span class="channel-arrow" aria-hidden="true"><span class="arrow arrow-up-right"></span></span>
+            </a>
+            <a class="channel" href="https://instagram.com/pmkrimakassar" target="_blank" rel="noopener noreferrer">
+              <span class="channel-icon" aria-hidden="true"><i class="fa-brands fa-instagram"></i></span>
+              <span><strong>Instagram</strong><small>@pmkrimakassar</small></span>
+              <span class="channel-arrow" aria-hidden="true"><span class="arrow arrow-up-right"></span></span>
+            </a>
+            <a class="channel" href="mailto:pmkrimakassar08@gmail.com">
+              <span class="channel-icon" aria-hidden="true"><i class="fa-regular fa-envelope"></i></span>
+              <span><strong>Email</strong><small>pmkrimakassar08@gmail.com</small></span>
+              <span class="channel-arrow" aria-hidden="true"><span class="arrow arrow-up-right"></span></span>
+            </a>
+            <div class="address-card">
+              <h3>Alamat Sekretariat</h3>
+              <address id="alamatPMKRI">Jl. Dr. Sutomo No. 08, Kota Makassar, Sulawesi Selatan.</address>
+              <button class="text-link" type="button" data-copy-address hidden>Salin Alamat <span aria-hidden="true"><i class="fa-regular fa-copy"></i></span></button>
+              <p class="inline-status" data-copy-status role="status"></p>
+            </div>
+          </div>
+
+          <form class="contact-form" id="form-pesan" aria-labelledby="judul-pesan" hidden>
+            <h3 id="judul-pesan">Kirim Pesan</h3>
+            <p class="form-intro">Isi pesan, lalu lanjutkan pengiriman di WhatsApp.</p>
+            <div class="form-field">
+              <label for="nama">Nama</label>
+              <input id="nama" name="nama" type="text" autocomplete="name" maxlength="100" placeholder="Nama lengkap" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="nama@email.com" required>
+            </div>
+            <div class="form-field">
+              <label for="pesan">Pesan</label>
+              <textarea id="pesan" name="pesan" rows="4" maxlength="1500" placeholder="Tulis pesan Anda" required></textarea>
+            </div>
+            <button class="button button-maroon" type="submit">Buka WhatsApp <span class="arrow arrow-up-right" aria-hidden="true"></span></button>
+            <p class="inline-status" data-message-status role="status"></p>
+            <a class="text-link" data-whatsapp-followup target="_blank" rel="noopener noreferrer" hidden>Lanjut ke WhatsApp <span class="arrow arrow-up-right" aria-hidden="true"></span></a>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div>
+        <p class="footer-name">PMKRI Cabang Makassar</p>
+        <p>Sanctus Albertus Magnus</p>
+      </div>
+      <a class="text-link text-link-light" href="#beranda">Kembali ke atas <span class="arrow arrow-up" aria-hidden="true"></span></a>
+      <p class="copyright">© 2026 PMKRI Cabang Makassar Sanctus Albertus Magnus</p>
+    </div>
+  </footer>
+</body>
 </html>
