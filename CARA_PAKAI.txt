@@ -1,0 +1,19 @@
+Revisi Website PMKRI Cabang Makassar
+
+Pratinjau
+Ekstrak seluruh isi ZIP ke satu folder. Buka index.html di browser.
+Folder assets berisi logo, foto PMKRI, dan font yang dipakai oleh halaman.
+
+Pasang di GitHub Pages
+Salin index.html, style.css, script.js, dan folder assets ke direktori
+publikasi GitHub Pages yang berisi index.html website saat ini. Unggah
+perubahan ke cabang yang dipakai untuk publikasi, lalu buka situsnya dan
+coba menu Beranda, Tentang, Kegiatan, Pengurus, dan Kontak.
+
+Kontak
+Formulir menyiapkan pesan dan membuka WhatsApp. Pengunjung mengirim
+pesannya dari WhatsApp.
+
+Font
+DM Sans dan Instrument Serif didistribusikan dengan SIL Open Font License.
+Salinan lisensinya tersedia di folder assets.
