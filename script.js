@@ -4,27 +4,6 @@ const hero = document.querySelector(".hero");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 if (hero) {
-  // Keep the hero clean: use the branch logo beside the title instead of a large image card.
-  hero.querySelector(".hero-figure")?.remove();
-  const heroCopy = hero.querySelector(".hero-copy");
-  const heroHeading = hero.querySelector(".hero-copy h1");
-  if (heroCopy && heroHeading) {
-    const titleLockup = document.createElement("div");
-    titleLockup.className = "hero-title-lockup";
-
-    const branchLogo = document.createElement("img");
-    branchLogo.className = "hero-branch-logo";
-    branchLogo.src = "logo.jpg.png";
-    branchLogo.alt = "Logo PMKRI Cabang Makassar";
-    branchLogo.width = 150;
-    branchLogo.height = 150;
-    branchLogo.fetchPriority = "high";
-
-    heroHeading.classList.add("hero-title");
-    titleLockup.append(branchLogo, heroHeading);
-    heroCopy.insertBefore(titleLockup, heroHeading);
-  }
-
   const heroBackgroundStyles = document.createElement("style");
   heroBackgroundStyles.textContent = `
     .hero {
@@ -36,7 +15,7 @@ if (hero) {
       position: absolute;
       z-index: 1;
       inset: 0;
-      background: linear-gradient(180deg, rgba(20, 13, 16, .60), rgba(20, 13, 16, .48) 55%, rgba(20, 13, 16, .68));
+      background: linear-gradient(90deg, rgba(249, 246, 239, .76), rgba(249, 246, 239, .60));
       content: "";
       pointer-events: none;
     }
@@ -45,7 +24,7 @@ if (hero) {
       z-index: 0;
       inset: 0;
       overflow: hidden;
-      background: #351720 url("pmkri-makassar.webp") center / cover no-repeat;
+      background: #70404a url("pmkri-makassar.webp") center / cover no-repeat;
       pointer-events: none;
       filter: saturate(1.08) contrast(1.06);
     }
@@ -60,19 +39,19 @@ if (hero) {
       filter: contrast(1.08) saturate(1.06) brightness(1.04);
       pointer-events: none;
     }
-    .hero .hero-layout {
+    .hero-layout,
+    .hero > .identity-bar {
       position: relative;
       z-index: 2;
-      display: grid;
-      min-height: min(620px, calc(100svh - var(--header-height)));
-      grid-template-columns: minmax(0, 1fr);
-      place-items: center;
-      padding-block: clamp(62px, 9vh, 105px);
-      text-align: center;
     }
+    .hero .hero-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .hero .hero-figure { display: none; }
     .hero .hero-copy {
       width: min(100%, 1100px);
       margin-inline: auto;
+      text-align: center;
     }
     .hero-title-lockup {
       display: flex;
@@ -87,14 +66,8 @@ if (hero) {
       height: clamp(82px, 12vw, 156px);
       flex: 0 0 auto;
       object-fit: contain;
-      filter: drop-shadow(0 5px 16px rgba(0, 0, 0, .28));
     }
-    .hero .hero-eyebrow {
-      justify-content: center;
-      margin-inline: auto;
-      color: #f2d89e;
-    }
-    .hero .hero-eyebrow::before { background: #f2d89e; }
+    .hero .hero-eyebrow { justify-content: center; margin-inline: auto; }
     .hero h1.hero-title {
       color: #ffdf00;
       font-size: clamp(2.6rem, 6.4vw, 6.2rem);
@@ -106,46 +79,42 @@ if (hero) {
     .hero h1.hero-title em {
       display: block;
       margin-top: .08em;
-      color: #62d47b;
+      color: #2e9b4b;
       font-style: normal;
     }
-    .hero .hero-patron { color: #fffdf8; }
-    .hero .hero-description {
-      max-width: 39rem;
-      margin: 18px auto 0;
-      color: rgba(255, 253, 248, .92);
-      text-shadow: 0 2px 12px rgba(0, 0, 0, .25);
-    }
+    .hero .hero-description { max-width: 39rem; margin: 18px auto 0; }
     .hero .hero-actions { justify-content: center; }
-    .hero::after {
-      position: absolute;
-      z-index: 2;
-      right: 0;
-      bottom: 110px;
-      left: 0;
-      height: clamp(42px, 7vw, 88px);
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23fffdf8' d='M0 68C190 130 315 38 500 65s284 72 462 18 305-60 478 3v34H0z'/%3E%3C/svg%3E") center bottom / 100% 100% no-repeat;
-      content: "";
-      pointer-events: none;
-    }
-    .hero > .identity-bar { position: relative; z-index: 3; }
-    @media (max-width: 840px) {
-      .hero .hero-layout { min-height: 540px; }
-      .hero::after { bottom: 155px; }
-    }
     @media (max-width: 560px) {
-      .hero .hero-layout { min-height: 500px; padding-block: 55px 85px; }
       .hero-title-lockup { gap: 12px; }
       .hero-branch-logo { width: clamp(64px, 20vw, 84px); height: clamp(64px, 20vw, 84px); }
       .hero h1.hero-title { font-size: clamp(2rem, 8.5vw, 3rem); }
-      .hero .hero-description { margin-top: 16px; }
-      .hero::after { bottom: 180px; }
+    }
+    @media (max-width: 840px) {
+      .hero::before { background: rgba(249, 246, 239, .84); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero::before { background: rgba(20, 13, 16, .66); }
+      .hero::before { background: rgba(249, 246, 239, .9); }
     }
   `;
   document.head.append(heroBackgroundStyles);
+
+  const heroCopy = hero.querySelector(".hero-copy");
+  const heroHeading = hero.querySelector(".hero-copy h1");
+  if (heroCopy && heroHeading) {
+    heroHeading.classList.add("hero-title");
+    if (!hero.querySelector(".hero-title-lockup")) {
+      const lockup = document.createElement("div");
+      lockup.className = "hero-title-lockup";
+      const branchLogo = document.createElement("img");
+      branchLogo.className = "hero-branch-logo";
+      branchLogo.src = "logo.jpg.png";
+      branchLogo.alt = "Logo PMKRI Cabang Makassar";
+      branchLogo.width = 150;
+      branchLogo.height = 150;
+      lockup.append(branchLogo, heroHeading);
+      heroCopy.insertBefore(lockup, heroHeading);
+    }
+  }
 
   if (!prefersReducedMotion.matches) {
     const videoBackground = document.createElement("div");
