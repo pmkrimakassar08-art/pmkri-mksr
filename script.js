@@ -59,7 +59,22 @@ if (hero) {
     videoBackground.setAttribute("aria-hidden", "true");
 
     const videoFrame = document.createElement("iframe");
-    videoFrame.src = "https://www.youtube-nocookie.com/embed/gI_9En-h5qs?autoplay=1&mute=1&controls=0&loop=1&playlist=gI_9En-h5qs&playsinline=1&rel=0&modestbranding=1&vq=hd1080";
+    videoFrame.id = "hero-background-video";
+    const videoUrl = new URL("https://www.youtube-nocookie.com/embed/gI_9En-h5qs");
+    videoUrl.search = new URLSearchParams({
+      autoplay: "1",
+      mute: "1",
+      controls: "0",
+      loop: "1",
+      playlist: "gI_9En-h5qs",
+      playsinline: "1",
+      rel: "0",
+      modestbranding: "1",
+      vq: "hd1080",
+      enablejsapi: "1",
+      origin: window.location.origin,
+    }).toString();
+    videoFrame.src = videoUrl.toString();
     videoFrame.title = "Video latar PMKRI Makassar";
     videoFrame.tabIndex = -1;
     videoFrame.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
@@ -67,6 +82,25 @@ if (hero) {
     videoFrame.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
     videoBackground.append(videoFrame);
     hero.prepend(videoBackground);
+
+    // Put the background video at a gentle 0.75x speed when YouTube permits it.
+    const previousYouTubeReady = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      if (typeof previousYouTubeReady === "function") previousYouTubeReady();
+      if (window.YT?.Player) {
+        new window.YT.Player(videoFrame, {
+          events: {
+            onReady: (event) => event.target.setPlaybackRate(0.75),
+          },
+        });
+      }
+    };
+    if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+      const youtubeApi = document.createElement("script");
+      youtubeApi.src = "https://www.youtube.com/iframe_api";
+      youtubeApi.async = true;
+      document.head.append(youtubeApi);
+    }
   }
 }
 
