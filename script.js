@@ -83,14 +83,14 @@ if (hero) {
     videoBackground.append(videoFrame);
     hero.prepend(videoBackground);
 
-    // Put the background video at a gentle 0.75x speed when YouTube permits it.
+    // Autoplay muted immediately, then use a slightly faster pace for a lively but comfortable background.
     const previousYouTubeReady = window.onYouTubeIframeAPIReady;
     window.onYouTubeIframeAPIReady = () => {
       if (typeof previousYouTubeReady === "function") previousYouTubeReady();
       if (window.YT?.Player) {
         new window.YT.Player(videoFrame, {
           events: {
-            onReady: (event) => event.target.setPlaybackRate(0.75),
+            onReady: (event) => event.target.setPlaybackRate(1.25),
           },
         });
       }
