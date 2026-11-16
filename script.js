@@ -35,7 +35,8 @@ if (hero) {
       width: max(100%, 177.78vh);
       height: max(100%, 56.25vw);
       border: 0;
-      transform: translate(-50%, -50%) scale(1.08);
+      /* Hindari zoom tambahan agar video latar tidak terlalu memenuhi layar. */
+      transform: translate(-50%, -50%) scale(1);
       filter: contrast(1.08) saturate(1.06) brightness(1.04);
       pointer-events: none;
     }
@@ -82,13 +83,30 @@ if (hero) {
     }
     .hero .hero-description { max-width: 39rem; margin: 18px auto 0; }
     .hero .hero-actions { justify-content: center; }
+    /* Bar identitas lebih ringkas dan seimbang pada bagian bawah Beranda. */
+    .hero .identity-layout {
+      grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr);
+      align-items: stretch;
+    }
+    .hero .identity-date,
+    .hero .identity-values {
+      padding-block: 17px;
+    }
+    .hero .identity-date { align-self: center; }
+    .hero .identity-values { padding-left: clamp(18px, 3vw, 42px); }
+    @media (max-width: 840px) {
+      .hero::before { background: rgba(249, 246, 239, .84); }
+      .hero .identity-layout { grid-template-columns: .76fr 1.24fr; }
+      .hero .identity-values { padding-left: 20px; }
+    }
     @media (max-width: 560px) {
       .hero-title-lockup { gap: 12px; }
       .hero-branch-logo { width: clamp(64px, 20vw, 84px); height: clamp(64px, 20vw, 84px); }
       .hero h1.hero-title { font-size: clamp(2rem, 8.5vw, 3rem); }
-    }
-    @media (max-width: 840px) {
-      .hero::before { background: rgba(249, 246, 239, .84); }
+      .hero .identity-layout { grid-template-columns: 1fr; }
+      .hero .identity-date,
+      .hero .identity-values { padding-block: 14px; }
+      .hero .identity-values { padding-left: 0; }
     }
     @media (prefers-reduced-motion: reduce) {
       .hero::before { background: rgba(249, 246, 239, .9); }
