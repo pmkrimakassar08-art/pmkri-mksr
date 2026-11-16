@@ -25,7 +25,7 @@
     }
   </style>
 <script>
-/* Transisi halaman PMKRI Makassar */
+/* Transisi zoom tipis antarhalaman PMKRI Makassar */
 (() => {
   'use strict';
 
@@ -38,11 +38,13 @@
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     const root = document.documentElement;
     const native = typeof document.startViewTransition === 'function';
+    const duration = 420;
+    const easing = 'cubic-bezier(.22, .68, .28, 1)';
+    const zoomInStart = 'scale(.965)';
     const visiblePage = () => {
       const visible = pages.filter((page) => !page.hidden);
       return visible.length === 1 ? visible[0] : null;
     };
-    const direction = (from, to) => pages.indexOf(to) < pages.indexOf(from) ? -1 : 1;
 
     let current = visiblePage();
     let active;
@@ -59,9 +61,9 @@
 
       if (active || !previous || motion.matches || typeof next.animate !== 'function') return;
       fallback = next.animate([
-        { opacity: 0.8, translate: `${direction(previous, next) * 24}px 0` },
-        { opacity: 1, translate: '0 0' },
-      ], { duration: 360, easing: 'cubic-bezier(.22, 1, .36, 1)' });
+        { opacity: 0.72, transform: zoomInStart, transformOrigin: '50% 40%' },
+        { opacity: 1, transform: 'scale(1)', transformOrigin: '50% 40%' },
+      ], { duration, easing });
     });
     for (const page of pages) {
       pageObserver.observe(page, { attributes: true, attributeFilter: ['hidden'] });
@@ -78,34 +80,31 @@
 
     const style = document.createElement('style');
     style.textContent = `
-      :root[data-pmkri-slide] {
-        view-transition-name: none;
-        --pmkri-in: 36px;
-        --pmkri-out: -16px;
-      }
-      :root[data-pmkri-slide="back"] {
-        --pmkri-in: -36px;
-        --pmkri-out: 16px;
-      }
-      :root[data-pmkri-slide] main#konten { view-transition-name: pmkri-content; }
-      :root[data-pmkri-slide]::view-transition { pointer-events: none; }
+      :root[data-pmkri-zoom] { view-transition-name: none; }
+      :root[data-pmkri-zoom] main#konten { view-transition-name: pmkri-content; }
+      :root[data-pmkri-zoom] body > .site-header { view-transition-name: pmkri-navbar; }
+      :root[data-pmkri-zoom]::view-transition { pointer-events: none; }
+      ::view-transition-group(pmkri-navbar) { z-index: 1; animation: none; }
+      ::view-transition-old(pmkri-navbar) { display: none; }
+      ::view-transition-new(pmkri-navbar) { animation: none; }
       ::view-transition-group(pmkri-content) {
-        animation-duration: 380ms;
+        animation-duration: ${duration}ms;
         overflow: clip;
       }
       ::view-transition-old(pmkri-content),
       ::view-transition-new(pmkri-content) {
         mix-blend-mode: normal;
-        animation: 380ms cubic-bezier(.22, 1, .36, 1) both;
+        transform-origin: 50% 40%;
+        animation: ${duration}ms ${easing} both;
       }
       ::view-transition-old(pmkri-content) { animation-name: pmkri-page-out; }
       ::view-transition-new(pmkri-content) { animation-name: pmkri-page-in; }
       @keyframes pmkri-page-out {
-        to { opacity: 0; transform: translateX(var(--pmkri-out)); }
+        to { opacity: 0; transform: scale(1.02); }
       }
       @keyframes pmkri-page-in {
-        from { opacity: .35; transform: translateX(var(--pmkri-in)); }
-        to { opacity: 1; transform: translateX(0); }
+        from { opacity: .52; transform: ${zoomInStart}; }
+        to { opacity: 1; transform: scale(1); }
       }
     `;
     document.head.append(style);
@@ -154,18 +153,18 @@
       active = undefined;
 
       if (destination === from) {
-        delete root.dataset.pmkriSlide;
+        delete root.dataset.pmkriZoom;
         return;
       }
 
       event.preventDefault();
       event.stopImmediatePropagation();
-      root.dataset.pmkriSlide = direction(from, destination) < 0 ? 'back' : 'forward';
+      root.dataset.pmkriZoom = '';
 
       const finish = () => {
         if (sequence !== navigation) return;
         active = undefined;
-        delete root.dataset.pmkriSlide;
+        delete root.dataset.pmkriZoom;
       };
 
       try {
@@ -189,6 +188,7 @@
   }
 })();
 </script>
+
 <style>
   html.has-js main#konten > #beranda:not([hidden]) {
     display: grid;
