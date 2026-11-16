@@ -24,6 +24,45 @@
       color: #FF0000;
     }
   </style>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = [...document.querySelectorAll('main#konten > section[id]')];
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const visibleSection = () => {
+      const visible = sections.filter(section => !section.hidden);
+      return visible.length === 1 ? visible[0] : null;
+    };
+
+    let current = visibleSection();
+    let transition;
+
+    const observer = new MutationObserver(() => {
+      const next = visibleSection();
+      if (!next || next === current) return;
+
+      const previous = current;
+      current = next;
+      transition?.cancel();
+
+      if (!previous || motion.matches) return;
+
+      transition = next.animate([
+        { opacity: 0.45, transform: 'translateY(8px)' },
+        { opacity: 1, transform: 'translateY(0)' }
+      ], {
+        duration: 320,
+        easing: 'ease-out'
+      });
+    });
+
+    sections.forEach(section => {
+      observer.observe(section, {
+        attributes: true,
+        attributeFilter: ['hidden']
+      });
+    });
+  }, { once: true });
+</script>
 </head>
 <body>
   <a class="skip-link" href="#konten">Lewati ke konten</a>
