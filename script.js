@@ -133,6 +133,37 @@ if (hero) {
   }
 }
 
+// Keep each navigation destination in its own scrollable viewport. Scrolling
+// stays within the current page; only a navigation click changes the page.
+const pageNavigationStyles = document.createElement("style");
+pageNavigationStyles.textContent = `
+  html.has-js,
+  html.has-js body {
+    height: 100%;
+    overflow: hidden;
+  }
+  html.has-js body {
+    height: 100vh;
+    height: 100dvh;
+  }
+  html.has-js .site-header { flex: 0 0 auto; }
+  html.has-js main#konten {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+  html.has-js main#konten > section:not([hidden]) {
+    display: block;
+    height: 100%;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-gutter: stable;
+  }
+`;
+document.head.append(pageNavigationStyles);
+
 const header = document.querySelector(".site-header");
 const menuButton = document.querySelector(".nav-toggle");
 const mobile = window.matchMedia("(max-width: 840px)");
@@ -143,6 +174,7 @@ const sections = new Map(
 const tabList = document.querySelector("[data-about-tabs]");
 const tabs = [...tabList.querySelectorAll("button")];
 const panels = tabs.map((tab) => document.getElementById(tab.dataset.panel));
+const pageFooter = document.querySelector(".site-footer");
 
 function setMenuOpen(open) {
   menuButton.setAttribute("aria-expanded", String(open));
@@ -216,6 +248,7 @@ function renderPage(focusHeading = false) {
   const panelIndex = panels.findIndex((panel) => "#" + panel.id === location.hash);
   const requested = panelIndex >= 0 ? "#tentang" : location.hash;
   const active = sections.has(requested) ? requested : "#beranda";
+  const activeSection = sections.get(active);
 
   sections.forEach((section, hash) => { section.hidden = hash !== active; });
   navLinks.forEach((link) => {
@@ -223,11 +256,13 @@ function renderPage(focusHeading = false) {
     else link.removeAttribute("aria-current");
   });
   if (active === "#tentang") selectTab(Math.max(0, panelIndex));
+  // Place the site footer inside the selected page's scroll viewport.
+  if (pageFooter) activeSection.append(pageFooter);
+  activeSection.scrollTop = 0;
   setMenuOpen(false);
-  window.scrollTo(0, 0);
 
   if (focusHeading) {
-    const heading = sections.get(active).querySelector("h1, h2");
+    const heading = activeSection.querySelector("h1, h2");
     heading.tabIndex = -1;
     heading.focus({ preventScroll: true });
   }
