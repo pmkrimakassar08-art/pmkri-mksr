@@ -4,13 +4,29 @@ const hero = document.querySelector(".hero");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 if (hero) {
-  // The hero should feature only the background video and text, not the decorative image card.
+  // Keep the hero clean: use the branch logo beside the title instead of a large image card.
   hero.querySelector(".hero-figure")?.remove();
+  const heroCopy = hero.querySelector(".hero-copy");
+  const heroHeading = hero.querySelector(".hero-copy h1");
+  if (heroCopy && heroHeading) {
+    const titleLockup = document.createElement("div");
+    titleLockup.className = "hero-title-lockup";
+
+    const branchLogo = document.createElement("img");
+    branchLogo.className = "hero-branch-logo";
+    branchLogo.src = "logo.jpg.png";
+    branchLogo.alt = "Logo PMKRI Cabang Makassar";
+    branchLogo.width = 150;
+    branchLogo.height = 150;
+    branchLogo.fetchPriority = "high";
+
+    heroHeading.classList.add("hero-title");
+    titleLockup.append(branchLogo, heroHeading);
+    heroCopy.insertBefore(titleLockup, heroHeading);
+  }
 
   const heroBackgroundStyles = document.createElement("style");
   heroBackgroundStyles.textContent = `
-    .site-header .brand img,
-    .site-header .brand small { display: none; }
     .hero {
       position: relative;
       isolation: isolate;
@@ -55,8 +71,23 @@ if (hero) {
       text-align: center;
     }
     .hero .hero-copy {
-      width: min(100%, 1000px);
+      width: min(100%, 1100px);
       margin-inline: auto;
+    }
+    .hero-title-lockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(18px, 3vw, 42px);
+      margin: 0 auto;
+    }
+    .hero-branch-logo {
+      display: block;
+      width: clamp(82px, 12vw, 156px);
+      height: clamp(82px, 12vw, 156px);
+      flex: 0 0 auto;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 16px rgba(0, 0, 0, .28));
     }
     .hero .hero-eyebrow {
       justify-content: center;
@@ -64,23 +95,24 @@ if (hero) {
       color: #f2d89e;
     }
     .hero .hero-eyebrow::before { background: #f2d89e; }
-    .hero h1 {
-      color: #fffdf8;
-      font-size: clamp(3.2rem, 8vw, 7rem);
+    .hero h1.hero-title {
+      color: #ffdf00;
+      font-size: clamp(2.6rem, 6.4vw, 6.2rem);
       line-height: .98;
       letter-spacing: .005em;
-      text-shadow: 0 3px 24px rgba(0, 0, 0, .28);
+      text-align: left;
+      text-shadow: 0 3px 24px rgba(0, 0, 0, .36);
     }
-    .hero h1 em {
+    .hero h1.hero-title em {
       display: block;
       margin-top: .08em;
-      color: #f0d18e;
+      color: #62d47b;
       font-style: normal;
     }
     .hero .hero-patron { color: #fffdf8; }
     .hero .hero-description {
       max-width: 39rem;
-      margin: 12px auto 0;
+      margin: 18px auto 0;
       color: rgba(255, 253, 248, .92);
       text-shadow: 0 2px 12px rgba(0, 0, 0, .25);
     }
@@ -103,7 +135,10 @@ if (hero) {
     }
     @media (max-width: 560px) {
       .hero .hero-layout { min-height: 500px; padding-block: 55px 85px; }
-      .hero h1 { font-size: clamp(3rem, 13vw, 4.5rem); }
+      .hero-title-lockup { gap: 12px; }
+      .hero-branch-logo { width: clamp(64px, 20vw, 84px); height: clamp(64px, 20vw, 84px); }
+      .hero h1.hero-title { font-size: clamp(2rem, 8.5vw, 3rem); }
+      .hero .hero-description { margin-top: 16px; }
       .hero::after { bottom: 180px; }
     }
     @media (prefers-reduced-motion: reduce) {
