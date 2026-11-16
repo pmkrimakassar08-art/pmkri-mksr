@@ -44,9 +44,7 @@ if (hero) {
       position: relative;
       z-index: 2;
     }
-    .hero .hero-layout {
-      grid-template-columns: minmax(0, 1fr);
-    }
+    .hero .hero-layout { grid-template-columns: minmax(0, 1fr); }
     .hero .hero-figure { display: none; }
     .hero .hero-copy {
       width: min(100%, 1100px);
@@ -111,8 +109,10 @@ if (hero) {
       branchLogo.alt = "Logo PMKRI Cabang Makassar";
       branchLogo.width = 150;
       branchLogo.height = 150;
-      lockup.append(branchLogo, heroHeading);
+      // Insert the wrapper before moving the heading into it; inserting relative
+      // to the heading after moving it caused a DOM exception and stopped script.js.
       heroCopy.insertBefore(lockup, heroHeading);
+      lockup.append(branchLogo, heroHeading);
     }
   }
 
@@ -256,7 +256,6 @@ function renderPage(focusHeading = false) {
     else link.removeAttribute("aria-current");
   });
   if (active === "#tentang") selectTab(Math.max(0, panelIndex));
-  // Place the site footer inside the selected page's scroll viewport.
   if (pageFooter) activeSection.append(pageFooter);
   activeSection.scrollTop = 0;
   setMenuOpen(false);
