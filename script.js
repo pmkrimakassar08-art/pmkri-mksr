@@ -4,6 +4,9 @@ const hero = document.querySelector(".hero");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 if (hero) {
+  // The hero should feature only the background video and text, not the decorative image card.
+  hero.querySelector(".hero-figure")?.remove();
+
   const heroBackgroundStyles = document.createElement("style");
   heroBackgroundStyles.textContent = `
     .site-header .brand img,
@@ -55,7 +58,6 @@ if (hero) {
       width: min(100%, 1000px);
       margin-inline: auto;
     }
-    .hero .hero-figure { display: none; }
     .hero .hero-eyebrow {
       justify-content: center;
       margin-inline: auto;
