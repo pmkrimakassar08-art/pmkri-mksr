@@ -903,3 +903,18 @@ details[open] > summary .disclosure-icon::after { visibility: hidden; }
     bottom: calc(50% - 2px);
   }
 }
+#beranda > .identity-bar {
+  background: transparent;
+  border-top: 0;
+  color: #4b1727;
+}
+
+#beranda .identity-bar .eyebrow-light,
+#beranda .identity-bar .round-arrow {
+  color: #4b1727;
+}
+
+#beranda .identity-bar .identity-values,
+#beranda .identity-bar .round-arrow {
+  border-color: rgba(75, 23, 39, 0.3);
+}
