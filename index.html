@@ -25,43 +25,169 @@
     }
   </style>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const sections = [...document.querySelectorAll('main#konten > section[id]')];
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const visibleSection = () => {
-      const visible = sections.filter(section => !section.hidden);
+/* Transisi halaman PMKRI Makassar */
+(() => {
+  'use strict';
+
+  function setup() {
+    const main = document.querySelector('main#konten');
+    const pages = main ? [...main.querySelectorAll(':scope > section[id]')] : [];
+    if (pages.length < 2 || main.hasAttribute('data-pmkri-transitions')) return;
+    main.setAttribute('data-pmkri-transitions', '');
+
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    const root = document.documentElement;
+    const native = typeof document.startViewTransition === 'function';
+    const visiblePage = () => {
+      const visible = pages.filter((page) => !page.hidden);
       return visible.length === 1 ? visible[0] : null;
     };
+    const direction = (from, to) => pages.indexOf(to) < pages.indexOf(from) ? -1 : 1;
 
-    let current = visibleSection();
-    let transition;
+    let current = visiblePage();
+    let active;
+    let fallback;
+    let replaying = false;
+    let navigation = 0;
 
-    const observer = new MutationObserver(() => {
-      const next = visibleSection();
+    const pageObserver = new MutationObserver(() => {
+      const next = visiblePage();
       if (!next || next === current) return;
-
       const previous = current;
       current = next;
-      transition?.cancel();
+      fallback?.cancel();
 
-      if (!previous || motion.matches) return;
+      if (active || !previous || motion.matches || typeof next.animate !== 'function') return;
+      fallback = next.animate([
+        { opacity: 0.8, translate: `${direction(previous, next) * 24}px 0` },
+        { opacity: 1, translate: '0 0' },
+      ], { duration: 360, easing: 'cubic-bezier(.22, 1, .36, 1)' });
+    });
+    for (const page of pages) {
+      pageObserver.observe(page, { attributes: true, attributeFilter: ['hidden'] });
+    }
 
-      transition = next.animate([
-        { opacity: 0.45, transform: 'translateY(8px)' },
-        { opacity: 1, transform: 'translateY(0)' }
-      ], {
-        duration: 320,
-        easing: 'ease-out'
-      });
+    motion.addEventListener('change', () => {
+      if (motion.matches) {
+        active?.skipTransition();
+        fallback?.cancel();
+      }
     });
 
-    sections.forEach(section => {
-      observer.observe(section, {
-        attributes: true,
-        attributeFilter: ['hidden']
+    if (!native) return;
+
+    const style = document.createElement('style');
+    style.textContent = `
+      :root[data-pmkri-slide] {
+        view-transition-name: none;
+        --pmkri-in: 36px;
+        --pmkri-out: -16px;
+      }
+      :root[data-pmkri-slide="back"] {
+        --pmkri-in: -36px;
+        --pmkri-out: 16px;
+      }
+      :root[data-pmkri-slide] main#konten { view-transition-name: pmkri-content; }
+      :root[data-pmkri-slide]::view-transition { pointer-events: none; }
+      ::view-transition-group(pmkri-content) {
+        animation-duration: 380ms;
+        overflow: clip;
+      }
+      ::view-transition-old(pmkri-content),
+      ::view-transition-new(pmkri-content) {
+        mix-blend-mode: normal;
+        animation: 380ms cubic-bezier(.22, 1, .36, 1) both;
+      }
+      ::view-transition-old(pmkri-content) { animation-name: pmkri-page-out; }
+      ::view-transition-new(pmkri-content) { animation-name: pmkri-page-in; }
+      @keyframes pmkri-page-out {
+        to { opacity: 0; transform: translateX(var(--pmkri-out)); }
+      }
+      @keyframes pmkri-page-in {
+        from { opacity: .35; transform: translateX(var(--pmkri-in)); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+    `;
+    document.head.append(style);
+
+    function replayLink(link, destination) {
+      return new Promise((resolve) => {
+        const watcher = new MutationObserver(() => {
+          if (!destination.hidden) finish();
+        });
+        const timeout = setTimeout(finish, 180);
+
+        function finish() {
+          clearTimeout(timeout);
+          watcher.disconnect();
+          resolve();
+        }
+
+        watcher.observe(destination, { attributes: true, attributeFilter: ['hidden'] });
+        replaying = true;
+        try {
+          link.click();
+        } finally {
+          replaying = false;
+          if (!destination.hidden) finish();
+        }
       });
-    });
-  }, { once: true });
+    }
+
+    document.addEventListener('click', (event) => {
+      if (replaying || motion.matches || event.defaultPrevented || event.button !== 0 ||
+          event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+      const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+      if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+
+      const url = new URL(link.href, location.href);
+      if (url.origin !== location.origin || url.pathname !== location.pathname ||
+          url.search !== location.search) return;
+
+      const destination = pages.find((page) => url.hash === '#' + page.id);
+      const from = visiblePage();
+      if (!destination || !from || (destination === from && !active)) return;
+
+      const sequence = ++navigation;
+      active?.skipTransition();
+      active = undefined;
+
+      if (destination === from) {
+        delete root.dataset.pmkriSlide;
+        return;
+      }
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      root.dataset.pmkriSlide = direction(from, destination) < 0 ? 'back' : 'forward';
+
+      const finish = () => {
+        if (sequence !== navigation) return;
+        active = undefined;
+        delete root.dataset.pmkriSlide;
+      };
+
+      try {
+        active = document.startViewTransition(() => {
+          if (sequence === navigation) return replayLink(link, destination);
+        });
+        // A transition can be skipped while the navigation still succeeds.
+        active.ready.catch(() => {});
+        active.finished.then(finish, finish);
+      } catch {
+        finish();
+        void replayLink(link, destination);
+      }
+    }, true);
+  }
+
+  if (document.readyState === 'complete') {
+    setup();
+  } else {
+    document.addEventListener('DOMContentLoaded', () => requestAnimationFrame(setup), { once: true });
+  }
+})();
 </script>
 </head>
 <body>
