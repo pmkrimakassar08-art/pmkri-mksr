@@ -4,37 +4,6 @@ const hero = document.querySelector(".hero");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 if (hero) {
-  // Replace the hero group photo with a lightweight PMKRI-themed vector illustration.
-  // The YouTube video background below remains enabled.
-  const heroImage = hero.querySelector(".hero-photo img");
-  if (heroImage) {
-    const heroIllustration = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1460 808" role="img" aria-labelledby="title desc">
-      <title id="title">Ilustrasi PMKRI Makassar</title>
-      <desc id="desc">Lambang ilustratif buku, obor, dan tiga nilai PMKRI: Intelektualitas, Kristianitas, Fraternitas.</desc>
-      <defs>
-        <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#ead9bd"/></linearGradient>
-        <linearGradient id="wine" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#773247"/><stop offset="1" stop-color="#351720"/></linearGradient>
-        <radialGradient id="glow"><stop stop-color="#f3d9a1" stop-opacity=".8"/><stop offset="1" stop-color="#f3d9a1" stop-opacity="0"/></radialGradient>
-      </defs>
-      <rect width="1460" height="808" fill="url(#paper)"/>
-      <circle cx="730" cy="355" r="330" fill="url(#glow)"/>
-      <circle cx="730" cy="355" r="258" fill="none" stroke="#b9955d" stroke-opacity=".28" stroke-width="2"/>
-      <circle cx="730" cy="355" r="226" fill="url(#wine)"/>
-      <circle cx="730" cy="355" r="205" fill="none" stroke="#e2c293" stroke-opacity=".7" stroke-width="2"/>
-      <path d="M730 210v117m0-93 40-35m-40 56-36-35" fill="none" stroke="#f3d9a1" stroke-linecap="round" stroke-linejoin="round" stroke-width="14"/>
-      <path d="M730 198c-39-45-24-77 2-107 8 34 44 43 26 86-5 12-15 19-28 21Z" fill="#e2c293"/>
-      <path d="M730 354c-51-44-110-51-166-26v132c56-25 115-18 166 26 51-44 110-51 166-26V328c-56-25-115-18-166 26Z" fill="#fffaf0" stroke="#e2c293" stroke-linejoin="round" stroke-width="8"/>
-      <path d="M730 354v132m-132-120v61m43-71v66m221-56v61m-43-71v66" fill="none" stroke="#a97839" stroke-linecap="round" stroke-width="6"/>
-      <path d="M518 255c-35-23-61-54-77-94m35 8c-28-1-51-13-68-35m94 90c-8-30-4-57 12-82m-66 141c-39-12-71-34-96-67m47-1c-28-8-47-25-59-51m132 155c-40-3-76-18-107-44m47-12c-29-1-52-13-69-35" fill="none" stroke="#b9955d" stroke-linecap="round" stroke-width="7"/>
-      <path d="M942 255c35-23 61-54 77-94m-35 8c28-1 51-13 68-35m-94 90c8-30 4-57-12-82m66 141c39-12 71-34 96-67m-47-1c28-8 47-25 59-51m-132 155c40-3 76-18 107-44m-47-12c29-1 52-13 69-35" fill="none" stroke="#b9955d" stroke-linecap="round" stroke-width="7"/>
-      <text x="730" y="644" fill="#3b1721" font-family="Georgia,serif" font-size="42" text-anchor="middle" letter-spacing="7">PMKRI MAKASSAR</text>
-      <text x="730" y="704" fill="#755322" font-family="Arial,sans-serif" font-size="22" text-anchor="middle" letter-spacing="3">INTELEKTUALITAS · KRISTIANITAS · FRATERNITAS</text>
-      <path d="M555 736h350" stroke="#b9955d" stroke-width="2"/>
-    </svg>`;
-    heroImage.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(heroIllustration)}`;
-    heroImage.alt = "Ilustrasi PMKRI Makassar dengan simbol buku, obor, dan nilai Intelektualitas, Kristianitas, Fraternitas";
-  }
-
   const heroBackgroundStyles = document.createElement("style");
   heroBackgroundStyles.textContent = `
     .hero {
@@ -46,7 +15,7 @@ if (hero) {
       position: absolute;
       z-index: 1;
       inset: 0;
-      background: linear-gradient(90deg, rgba(249, 246, 239, .76), rgba(249, 246, 239, .60));
+      background: linear-gradient(180deg, rgba(20, 13, 16, .60), rgba(20, 13, 16, .48) 55%, rgba(20, 13, 16, .68));
       content: "";
       pointer-events: none;
     }
@@ -55,7 +24,7 @@ if (hero) {
       z-index: 0;
       inset: 0;
       overflow: hidden;
-      background: #70404a url("pmkri-makassar.webp") center / cover no-repeat;
+      background: #351720 url("pmkri-makassar.webp") center / cover no-repeat;
       pointer-events: none;
       filter: saturate(1.08) contrast(1.06);
     }
@@ -70,16 +39,74 @@ if (hero) {
       filter: contrast(1.08) saturate(1.06) brightness(1.04);
       pointer-events: none;
     }
-    .hero-layout,
-    .hero > .identity-bar {
+    .hero .hero-layout {
       position: relative;
       z-index: 2;
+      display: grid;
+      min-height: min(620px, calc(100svh - var(--header-height)));
+      grid-template-columns: minmax(0, 1fr);
+      place-items: center;
+      padding-block: clamp(62px, 9vh, 105px);
+      text-align: center;
+    }
+    .hero .hero-copy {
+      width: min(100%, 1000px);
+      margin-inline: auto;
+    }
+    .hero .hero-figure { display: none; }
+    .hero .hero-eyebrow {
+      justify-content: center;
+      margin-inline: auto;
+      color: #f2d89e;
+    }
+    .hero .hero-eyebrow::before { background: #f2d89e; }
+    .hero h1 {
+      color: #fffdf8;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      line-height: .98;
+      letter-spacing: .005em;
+      text-shadow: 0 3px 24px rgba(0, 0, 0, .28);
+    }
+    .hero h1 em {
+      display: block;
+      margin-top: .08em;
+      color: #f0d18e;
+      font-style: normal;
+    }
+    .hero .hero-patron { color: #fffdf8; }
+    .hero .hero-description {
+      max-width: 39rem;
+      margin: 12px auto 0;
+      color: rgba(255, 253, 248, .92);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, .25);
+    }
+    .hero .hero-actions { justify-content: center; }
+    .hero::after {
+      position: absolute;
+      z-index: 2;
+      right: 0;
+      bottom: 110px;
+      left: 0;
+      height: clamp(42px, 7vw, 88px);
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23fffdf8' d='M0 68C190 130 315 38 500 65s284 72 462 18 305-60 478 3v34H0z'/%3E%3C/svg%3E") center bottom / 100% 100% no-repeat;
+      content: "";
+      pointer-events: none;
+    }
+    .hero > .identity-bar {
+      position: relative;
+      z-index: 3;
     }
     @media (max-width: 840px) {
-      .hero::before { background: rgba(249, 246, 239, .84); }
+      .hero .hero-layout { min-height: 540px; }
+      .hero::after { bottom: 155px; }
+    }
+    @media (max-width: 560px) {
+      .hero .hero-layout { min-height: 500px; padding-block: 55px 85px; }
+      .hero h1 { font-size: clamp(3rem, 13vw, 4.5rem); }
+      .hero::after { bottom: 180px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero::before { background: rgba(249, 246, 239, .9); }
+      .hero::before { background: rgba(20, 13, 16, .66); }
     }
   `;
   document.head.append(heroBackgroundStyles);
@@ -90,22 +117,7 @@ if (hero) {
     videoBackground.setAttribute("aria-hidden", "true");
 
     const videoFrame = document.createElement("iframe");
-    videoFrame.id = "hero-background-video";
-    const videoUrl = new URL("https://www.youtube-nocookie.com/embed/gI_9En-h5qs");
-    videoUrl.search = new URLSearchParams({
-      autoplay: "1",
-      mute: "1",
-      controls: "0",
-      loop: "1",
-      playlist: "gI_9En-h5qs",
-      playsinline: "1",
-      rel: "0",
-      modestbranding: "1",
-      vq: "hd1080",
-      enablejsapi: "1",
-      origin: window.location.origin,
-    }).toString();
-    videoFrame.src = videoUrl.toString();
+    videoFrame.src = "https://www.youtube-nocookie.com/embed/gI_9En-h5qs?autoplay=1&mute=1&controls=0&loop=1&playlist=gI_9En-h5qs&playsinline=1&rel=0&modestbranding=1&vq=hd1080";
     videoFrame.title = "Video latar PMKRI Makassar";
     videoFrame.tabIndex = -1;
     videoFrame.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
@@ -113,25 +125,6 @@ if (hero) {
     videoFrame.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
     videoBackground.append(videoFrame);
     hero.prepend(videoBackground);
-
-    // Autoplay muted immediately, then use a slightly faster pace for a lively but comfortable background.
-    const previousYouTubeReady = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = () => {
-      if (typeof previousYouTubeReady === "function") previousYouTubeReady();
-      if (window.YT?.Player) {
-        new window.YT.Player(videoFrame, {
-          events: {
-            onReady: (event) => event.target.setPlaybackRate(1.25),
-          },
-        });
-      }
-    };
-    if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
-      const youtubeApi = document.createElement("script");
-      youtubeApi.src = "https://www.youtube.com/iframe_api";
-      youtubeApi.async = true;
-      document.head.append(youtubeApi);
-    }
   }
 }
 
