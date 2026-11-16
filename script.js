@@ -6,6 +6,8 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 if (hero) {
   const heroBackgroundStyles = document.createElement("style");
   heroBackgroundStyles.textContent = `
+    .site-header .brand img,
+    .site-header .brand small { display: none; }
     .hero {
       position: relative;
       isolation: isolate;
@@ -92,10 +94,7 @@ if (hero) {
       content: "";
       pointer-events: none;
     }
-    .hero > .identity-bar {
-      position: relative;
-      z-index: 3;
-    }
+    .hero > .identity-bar { position: relative; z-index: 3; }
     @media (max-width: 840px) {
       .hero .hero-layout { min-height: 540px; }
       .hero::after { bottom: 155px; }
