@@ -251,7 +251,7 @@ address { font-style: normal; }
   letter-spacing: -.032em;
 }
 
-.hero h1 em { display: block; color: var(--wine); font-weight: 400; }
+.hero h1 em { display: block; color: #2e7d32; font-weight: 400; }
 .hero-patron { margin-top: 20px; color: var(--wine-dark); font-size: 1.16rem; font-weight: 700; }
 .hero-description { max-width: 30rem; margin-top: 7px; color: var(--muted); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
