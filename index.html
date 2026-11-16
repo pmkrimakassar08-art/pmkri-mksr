@@ -25,170 +25,129 @@
     }
   </style>
 <script>
-/* Transisi zoom tipis antarhalaman PMKRI Makassar */
+/* Logo PMKRI saat berpindah menu utama. */
 (() => {
   'use strict';
 
   function setup() {
-    const main = document.querySelector('main#konten');
-    const pages = main ? [...main.querySelectorAll(':scope > section[id]')] : [];
-    if (pages.length < 2 || main.hasAttribute('data-pmkri-transitions')) return;
-    main.setAttribute('data-pmkri-transitions', '');
-
-    const motion = matchMedia('(prefers-reduced-motion: reduce)');
-    const root = document.documentElement;
-    const native = typeof document.startViewTransition === 'function';
-    const duration = 420;
-    const easing = 'cubic-bezier(.22, .68, .28, 1)';
-    const zoomInStart = 'scale(.965)';
-    const visiblePage = () => {
-      const visible = pages.filter((page) => !page.hidden);
-      return visible.length === 1 ? visible[0] : null;
-    };
-
-    let current = visiblePage();
-    let active;
-    let fallback;
-    let replaying = false;
-    let navigation = 0;
-
-    const pageObserver = new MutationObserver(() => {
-      const next = visiblePage();
-      if (!next || next === current) return;
-      const previous = current;
-      current = next;
-      fallback?.cancel();
-
-      if (active || !previous || motion.matches || typeof next.animate !== 'function') return;
-      fallback = next.animate([
-        { opacity: 0.72, transform: zoomInStart, transformOrigin: '50% 40%' },
-        { opacity: 1, transform: 'scale(1)', transformOrigin: '50% 40%' },
-      ], { duration, easing });
-    });
-    for (const page of pages) {
-      pageObserver.observe(page, { attributes: true, attributeFilter: ['hidden'] });
-    }
-
-    motion.addEventListener('change', () => {
-      if (motion.matches) {
-        active?.skipTransition();
-        fallback?.cancel();
-      }
-    });
-
-    if (!native) return;
+    const pages = [...document.querySelectorAll('main#konten > section[id]')];
+    if (pages.length < 2 || document.getElementById('pmkri-page-loader')) return;
 
     const style = document.createElement('style');
     style.textContent = `
-      :root[data-pmkri-zoom] { view-transition-name: none; }
-      :root[data-pmkri-zoom] main#konten { view-transition-name: pmkri-content; }
-      :root[data-pmkri-zoom] body > .site-header { view-transition-name: pmkri-navbar; }
-      :root[data-pmkri-zoom]::view-transition { pointer-events: none; }
-      ::view-transition-group(pmkri-navbar) { z-index: 1; animation: none; }
-      ::view-transition-old(pmkri-navbar) { display: none; }
-      ::view-transition-new(pmkri-navbar) { animation: none; }
-      ::view-transition-group(pmkri-content) {
-        animation-duration: ${duration}ms;
-        overflow: clip;
+      #pmkri-page-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(ellipse at center, #6c2536, #2b141b 78%);
+        pointer-events: none;
+        animation: pmkri-loader-out 560ms ease-out both;
       }
-      ::view-transition-old(pmkri-content),
-      ::view-transition-new(pmkri-content) {
-        mix-blend-mode: normal;
-        transform-origin: 50% 40%;
-        animation: ${duration}ms ${easing} both;
+
+      #pmkri-page-loader[hidden] { display: none; }
+
+      .pmkri-loader-mark {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        place-items: center;
+        width: clamp(108px, 22vw, 138px);
+        aspect-ratio: 1;
+        animation: pmkri-loader-mark-in 330ms cubic-bezier(.2, .72, .28, 1) both;
       }
-      ::view-transition-old(pmkri-content) { animation-name: pmkri-page-out; }
-      ::view-transition-new(pmkri-content) { animation-name: pmkri-page-in; }
-      @keyframes pmkri-page-out {
-        to { opacity: 0; transform: scale(1.02); }
+
+      .pmkri-loader-mark::before {
+        position: absolute;
+        inset: 0;
+        border: 2px solid rgba(226, 194, 147, .24);
+        border-top-color: #e2c293;
+        border-right-color: #e2c293;
+        border-radius: 50%;
+        content: '';
+        animation: pmkri-loader-turn 560ms ease-out both;
       }
-      @keyframes pmkri-page-in {
-        from { opacity: .52; transform: ${zoomInStart}; }
-        to { opacity: 1; transform: scale(1); }
+
+      .pmkri-loader-mark img {
+        width: 82%;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: contain;
+        filter: drop-shadow(0 5px 12px rgba(24, 7, 12, .38));
+      }
+
+      @keyframes pmkri-loader-out {
+        0%, 48% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+
+      @keyframes pmkri-loader-mark-in {
+        from { transform: scale(.83); }
+        to { transform: scale(1); }
+      }
+
+      @keyframes pmkri-loader-turn {
+        from { transform: rotate(-55deg); }
+        to { transform: rotate(275deg); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #pmkri-page-loader { display: none; }
       }
     `;
     document.head.append(style);
 
-    function replayLink(link, destination) {
-      return new Promise((resolve) => {
-        const watcher = new MutationObserver(() => {
-          if (!destination.hidden) finish();
-        });
-        const timeout = setTimeout(finish, 180);
+    const loader = document.createElement('div');
+    loader.id = 'pmkri-page-loader';
+    loader.hidden = true;
+    loader.setAttribute('aria-hidden', 'true');
 
-        function finish() {
-          clearTimeout(timeout);
-          watcher.disconnect();
-          resolve();
-        }
+    const mark = document.createElement('div');
+    mark.className = 'pmkri-loader-mark';
 
-        watcher.observe(destination, { attributes: true, attributeFilter: ['hidden'] });
-        replaying = true;
-        try {
-          link.click();
-        } finally {
-          replaying = false;
-          if (!destination.hidden) finish();
-        }
-      });
+    const logo = document.createElement('img');
+    logo.src = 'logo.jpg.png';
+    logo.alt = '';
+    logo.width = 112;
+    logo.height = 112;
+    mark.append(logo);
+    loader.append(mark);
+    document.body.append(loader);
+
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    let current = pages.find((page) => !page.hidden);
+
+    loader.addEventListener('animationend', (event) => {
+      if (event.target === loader) loader.hidden = true;
+    });
+    motion.addEventListener('change', (event) => {
+      if (event.matches) loader.hidden = true;
+    });
+
+    // Ikuti perubahan halaman dari navigasi situs dan riwayat browser.
+    const observer = new MutationObserver(() => {
+      const next = pages.find((page) => !page.hidden);
+      if (!next || next === current) return;
+      current = next;
+
+      if (!motion.matches && logo.complete && logo.naturalWidth > 0) {
+        loader.hidden = false;
+      }
+    });
+
+    for (const page of pages) {
+      observer.observe(page, { attributes: true, attributeFilter: ['hidden'] });
     }
-
-    document.addEventListener('click', (event) => {
-      if (replaying || motion.matches || event.defaultPrevented || event.button !== 0 ||
-          event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-      const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
-      if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
-
-      const url = new URL(link.href, location.href);
-      if (url.origin !== location.origin || url.pathname !== location.pathname ||
-          url.search !== location.search) return;
-
-      const destination = pages.find((page) => url.hash === '#' + page.id);
-      const from = visiblePage();
-      if (!destination || !from || (destination === from && !active)) return;
-
-      const sequence = ++navigation;
-      active?.skipTransition();
-      active = undefined;
-
-      if (destination === from) {
-        delete root.dataset.pmkriZoom;
-        return;
-      }
-
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      root.dataset.pmkriZoom = '';
-
-      const finish = () => {
-        if (sequence !== navigation) return;
-        active = undefined;
-        delete root.dataset.pmkriZoom;
-      };
-
-      try {
-        active = document.startViewTransition(() => {
-          if (sequence === navigation) return replayLink(link, destination);
-        });
-        // A transition can be skipped while the navigation still succeeds.
-        active.ready.catch(() => {});
-        active.finished.then(finish, finish);
-      } catch {
-        finish();
-        void replayLink(link, destination);
-      }
-    }, true);
   }
 
-  if (document.readyState === 'complete') {
-    setup();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup, { once: true });
   } else {
-    document.addEventListener('DOMContentLoaded', () => requestAnimationFrame(setup), { once: true });
+    setup();
   }
 })();
 </script>
-
 <style>
   html.has-js main#konten > #beranda:not([hidden]) {
     display: grid;
@@ -578,5 +537,6 @@
       </div>
     </div>
   </footer>
+   <script src="./transisi-logo-pmkri.js" defer></script>
 </body>
 </html>
