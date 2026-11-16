@@ -172,20 +172,23 @@ const sections = new Map(
   navLinks.map((link) => [link.hash, document.querySelector(link.hash)]),
 );
 const tabList = document.querySelector("[data-about-tabs]");
-const tabs = [...tabList.querySelectorAll("button")];
+const tabs = tabList ? [...tabList.querySelectorAll("button")] : [];
 const panels = tabs.map((tab) => document.getElementById(tab.dataset.panel));
 const pageFooter = document.querySelector(".site-footer");
+const headerCta = document.querySelector(".button-header[href='#kontak']");
 
 function setMenuOpen(open) {
-  menuButton.setAttribute("aria-expanded", String(open));
+  if (menuButton) menuButton.setAttribute("aria-expanded", String(open));
 }
 
-menuButton.addEventListener("click", () => {
-  setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
-});
+if (menuButton) {
+  menuButton.addEventListener("click", () => {
+    setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
+  });
+}
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && mobile.matches && menuButton.getAttribute("aria-expanded") === "true") {
+  if (event.key === "Escape" && mobile.matches && menuButton && menuButton.getAttribute("aria-expanded") === "true") {
     setMenuOpen(false);
     menuButton.focus();
   }
@@ -208,41 +211,45 @@ function changeTab(index) {
 
 function updateResponsiveControls() {
   setMenuOpen(false);
-  tabList.setAttribute("aria-orientation", mobile.matches ? "horizontal" : "vertical");
+  if (tabList) tabList.setAttribute("aria-orientation", mobile.matches ? "horizontal" : "vertical");
 }
 
-tabList.setAttribute("role", "tablist");
-updateResponsiveControls();
-mobile.addEventListener("change", updateResponsiveControls);
+if (tabList) {
+  tabList.setAttribute("role", "tablist");
+  updateResponsiveControls();
+  mobile.addEventListener("change", updateResponsiveControls);
+}
 
-tabs.forEach((tab, index) => {
-  tab.setAttribute("role", "tab");
-  tab.setAttribute("aria-controls", panels[index].id);
-  panels[index].setAttribute("role", "tabpanel");
-  panels[index].setAttribute("aria-labelledby", tab.id);
-  panels[index].tabIndex = 0;
-  tab.addEventListener("click", () => changeTab(index));
-});
+if (tabs.length) {
+  tabs.forEach((tab, index) => {
+    tab.setAttribute("role", "tab");
+    tab.setAttribute("aria-controls", panels[index].id);
+    panels[index].setAttribute("role", "tabpanel");
+    panels[index].setAttribute("aria-labelledby", tab.id);
+    panels[index].tabIndex = 0;
+    tab.addEventListener("click", () => changeTab(index));
+  });
 
-tabList.addEventListener("keydown", (event) => {
-  const current = tabs.indexOf(event.target);
-  if (current < 0) return;
+  tabList.addEventListener("keydown", (event) => {
+    const current = tabs.indexOf(event.target);
+    if (current < 0) return;
 
-  const previous = mobile.matches ? "ArrowLeft" : "ArrowUp";
-  const next = mobile.matches ? "ArrowRight" : "ArrowDown";
-  let selected;
-  switch (event.key) {
-    case previous: selected = (current - 1 + tabs.length) % tabs.length; break;
-    case next: selected = (current + 1) % tabs.length; break;
-    case "Home": selected = 0; break;
-    case "End": selected = tabs.length - 1; break;
-    default: return;
-  }
+    const previous = mobile.matches ? "ArrowLeft" : "ArrowUp";
+    const next = mobile.matches ? "ArrowRight" : "ArrowDown";
+    let selected;
+    switch (event.key) {
+      case previous: selected = (current - 1 + tabs.length) % tabs.length; break;
+      case next: selected = (current + 1) % tabs.length; break;
+      case "Home": selected = 0; break;
+      case "End": selected = tabs.length - 1; break;
+      default: return;
+    }
 
-  event.preventDefault();
-  changeTab(selected);
-  tabs[selected].focus();
-});
+    event.preventDefault();
+    changeTab(selected);
+    tabs[selected].focus();
+  });
+}
 
 function renderPage(focusHeading = false) {
   const panelIndex = panels.findIndex((panel) => "#" + panel.id === location.hash);
@@ -268,7 +275,7 @@ function renderPage(focusHeading = false) {
 }
 
 document.addEventListener("click", (event) => {
-  if (!header.contains(event.target)) setMenuOpen(false);
+  if (header && !header.contains(event.target)) setMenuOpen(false);
   if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
 
   const link = event.target.closest('a[href^="#"]');
@@ -286,9 +293,23 @@ document.addEventListener("click", (event) => {
   renderPage(true);
 });
 
+if (headerCta) {
+  headerCta.addEventListener("click", (event) => {
+    const dest = document.getElementById("kontak");
+    if (!dest) return;
+
+    event.preventDefault();
+    if (location.hash !== "#kontak") history.pushState(null, "", "#kontak");
+    renderPage(true);
+    requestAnimationFrame(() => {
+      dest.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
 document.documentElement.classList.add("has-js");
-menuButton.hidden = false;
-tabList.hidden = false;
+if (menuButton) menuButton.hidden = false;
+if (tabList) tabList.hidden = false;
 renderPage();
 window.addEventListener("hashchange", () => renderPage(true));
 
@@ -300,79 +321,89 @@ const boardCards = [...document.querySelectorAll(".board-card")].map((card) => (
 const emptyBoard = document.querySelector("[data-board-empty]");
 const boardStatus = document.querySelector("[data-board-status]");
 
-document.querySelector("[data-board-filter]").hidden = false;
-boardSearch.addEventListener("input", () => {
-  const search = boardSearch.value.trim().toLocaleLowerCase("id");
-  const words = search.split(/\s+/).filter(Boolean);
-  let matches = 0;
-  boardCards.forEach(({ card, text }) => {
-    const visible = words.every((word) => text.includes(word));
-    card.hidden = !visible;
-    if (visible) matches += 1;
+if (boardSearch && emptyBoard && boardStatus) {
+  document.querySelector("[data-board-filter]").hidden = false;
+  boardSearch.addEventListener("input", () => {
+    const search = boardSearch.value.trim().toLocaleLowerCase("id");
+    const words = search.split(/\s+/).filter(Boolean);
+    let matches = 0;
+    boardCards.forEach(({ card, text }) => {
+      const visible = words.every((word) => text.includes(word));
+      card.hidden = !visible;
+      if (visible) matches += 1;
+    });
+    emptyBoard.hidden = matches > 0;
+    boardStatus.textContent = search ? matches + " pengurus ditemukan." : "";
   });
-  emptyBoard.hidden = matches > 0;
-  boardStatus.textContent = search ? matches + " pengurus ditemukan." : "";
-});
+}
 
 const copyAddress = document.querySelector("[data-copy-address]");
 const address = document.getElementById("alamatPMKRI");
 const copyStatus = document.querySelector("[data-copy-status]");
-copyAddress.hidden = false;
+if (copyAddress && address && copyStatus) {
+  copyAddress.hidden = false;
 
-copyAddress.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(address.textContent.trim());
-    copyStatus.textContent = "Alamat berhasil disalin.";
-  } catch {
-    const selection = window.getSelection();
-    const range = document.createRange();
-    range.selectNodeContents(address);
-    selection.removeAllRanges();
-    selection.addRange(range);
-    copyStatus.textContent = "Alamat dipilih. Gunakan perintah Salin di perangkat Anda.";
-  }
-});
+  copyAddress.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(address.textContent.trim());
+      copyStatus.textContent = "Alamat berhasil disalin.";
+    } catch {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(address);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      copyStatus.textContent = "Alamat dipilih. Gunakan perintah Salin di perangkat Anda.";
+    }
+  });
+}
 
 const messageForm = document.getElementById("form-pesan");
 const messageStatus = document.querySelector("[data-message-status]");
 const followupLink = document.querySelector("[data-whatsapp-followup]");
 const whatsappLink = document.getElementById("whatsapp-pmkri");
-messageForm.hidden = false;
+if (messageForm && whatsappLink) {
+  messageForm.hidden = false;
 
-messageForm.addEventListener("input", (event) => {
-  event.target.setCustomValidity("");
-  followupLink.hidden = true;
-  followupLink.removeAttribute("href");
-  messageStatus.textContent = "";
-});
+  messageForm.addEventListener("input", (event) => {
+    event.target.setCustomValidity("");
+    if (followupLink) {
+      followupLink.hidden = true;
+      followupLink.removeAttribute("href");
+    }
+    if (messageStatus) messageStatus.textContent = "";
+  });
 
-messageForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const fields = new FormData(messageForm);
-  const name = fields.get("nama").trim();
-  const email = fields.get("email").trim();
-  const message = fields.get("pesan").trim();
+  messageForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const fields = new FormData(messageForm);
+    const name = fields.get("nama").trim();
+    const email = fields.get("email").trim();
+    const message = fields.get("pesan").trim();
 
-  if (!name || !message) {
-    const field = messageForm.elements.namedItem(name ? "pesan" : "nama");
-    field.setCustomValidity(name ? "Tulis pesan yang ingin dikirim." : "Isi nama Anda.");
-    field.reportValidity();
-    return;
-  }
+    if (!name || !message) {
+      const field = messageForm.elements.namedItem(name ? "pesan" : "nama");
+      field.setCustomValidity(name ? "Tulis pesan yang ingin dikirim." : "Isi nama Anda.");
+      field.reportValidity();
+      return;
+    }
 
-  const url = new URL(whatsappLink.href);
-  url.searchParams.set("text", [
-    "Halo PMKRI Makassar,",
-    "",
-    "Nama: " + name,
-    "Email: " + email,
-    "",
-    "Pesan:",
-    message,
-  ].join("\n"));
+    const url = new URL(whatsappLink.href);
+    url.searchParams.set("text", [
+      "Halo PMKRI Makassar,",
+      "",
+      "Nama: " + name,
+      "Email: " + email,
+      "",
+      "Pesan:",
+      message,
+    ].join("\n"));
 
-  followupLink.href = url.href;
-  followupLink.hidden = false;
-  messageStatus.textContent = "Pesan siap. Lanjutkan pengiriman di WhatsApp.";
-  window.open(url.href, "_blank", "noopener,noreferrer");
-});
+    if (followupLink) {
+      followupLink.href = url.href;
+      followupLink.hidden = false;
+    }
+    if (messageStatus) messageStatus.textContent = "Pesan siap. Lanjutkan pengiriman di WhatsApp.";
+    window.open(url.href, "_blank", "noopener,noreferrer");
+  });
+}
