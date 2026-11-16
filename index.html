@@ -237,6 +237,29 @@
 #navigasi .nav-links a {
   color: #FF0000 !important;
 }  
+.site-header .navbar {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(16px, 3vw, 48px);
+}
+
+#beranda .hero-title-lockup {
+  justify-content: center;
+}
+
+#beranda #judul-beranda {
+  min-width: 0;
+  max-width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  #beranda #judul-beranda {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    white-space: normal;
+  }
+}  
 </style>
 </head>
 <body>
