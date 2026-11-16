@@ -796,3 +796,99 @@ details[open] > summary .disclosure-icon::after { visibility: hidden; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+#daftar-pengurus {
+  --jarak-baris: 22px;
+  --cabang: 24px;
+  --garis-bagan: #b98756;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--jarak-baris) calc(2 * var(--cabang));
+  margin-bottom: 32px;
+}
+
+#daftar-pengurus > .board-card {
+  position: relative;
+  min-width: 0;
+  overflow: visible;
+}
+
+#daftar-pengurus > .board-card-lead {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 680px);
+  box-sizing: border-box;
+}
+
+#daftar-pengurus > .board-card[hidden] {
+  display: none;
+}
+
+/* Sembunyikan garis saat daftar sedang dicari. */
+#pengurus:has(#cari-pengurus:not(:placeholder-shown)) #daftar-pengurus {
+  --garis-bagan: transparent;
+}
+
+#daftar-pengurus > .board-card:not(.board-card-lead)::after,
+#daftar-pengurus > .board-card:not(.board-card-lead):nth-child(even)::before {
+  content: "";
+  position: absolute;
+  background: var(--garis-bagan);
+  pointer-events: none;
+}
+
+/* Garis mendatar yang menghubungkan setiap kartu. */
+#daftar-pengurus > .board-card:not(.board-card-lead)::after {
+  top: 50%;
+  width: calc(var(--cabang) + 2px);
+  height: 2px;
+  left: calc(0px - var(--cabang) - 2px);
+}
+
+#daftar-pengurus > .board-card:not(.board-card-lead):nth-child(even)::after {
+  left: auto;
+  right: calc(0px - var(--cabang) - 2px);
+}
+
+/* Garis utama di tengah bagan. */
+#daftar-pengurus > .board-card:not(.board-card-lead):nth-child(even)::before {
+  top: calc(0px - var(--jarak-baris) - 2px);
+  bottom: -2px;
+  right: calc(0px - var(--cabang) - 2px);
+  width: 2px;
+}
+
+#daftar-pengurus > .board-card:nth-last-child(2):nth-child(even)::before {
+  bottom: calc(50% - 2px);
+}
+
+/* Di HP, garis utama pindah ke kiri. */
+@media (max-width: 700px) {
+  #daftar-pengurus {
+    --cabang: 16px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #daftar-pengurus > .board-card:not(.board-card-lead) {
+    margin-left: 26px;
+  }
+
+  #daftar-pengurus > .board-card:not(.board-card-lead):nth-child(n)::after,
+  #daftar-pengurus > .board-card:not(.board-card-lead):nth-child(n)::before {
+    left: calc(0px - var(--cabang) - 2px);
+    right: auto;
+  }
+
+  #daftar-pengurus > .board-card:not(.board-card-lead):nth-child(n)::before {
+    content: "";
+    position: absolute;
+    top: calc(0px - var(--jarak-baris) - 2px);
+    bottom: -2px;
+    width: 2px;
+    background: var(--garis-bagan);
+    pointer-events: none;
+  }
+
+  #daftar-pengurus > .board-card:not(.board-card-lead):last-child::before {
+    bottom: calc(50% - 2px);
+  }
+}
