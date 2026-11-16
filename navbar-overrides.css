@@ -1,0 +1,49 @@
+/* Navbar color override: warm gold text on the original light header. */
+.site-header {
+  border-bottom-color: var(--rule);
+  background: var(--white);
+}
+
+.brand strong,
+.nav-links a {
+  color: #9a6b00;
+}
+
+.brand small {
+  color: var(--muted);
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  background: #f3e8d1;
+  color: #805700;
+}
+
+.button-header.button-primary {
+  border-color: var(--wine);
+  background: var(--wine);
+  color: var(--white);
+}
+
+.button-header.button-primary:hover {
+  border-color: var(--wine-dark);
+  background: var(--wine-dark);
+}
+
+@media (max-width: 840px) {
+  .nav-toggle {
+    border-color: var(--rule-strong);
+    background: var(--white);
+    color: #805700;
+  }
+
+  .nav-toggle[aria-expanded="true"] {
+    border-color: #9a6b00;
+    background: #f3e8d1;
+  }
+
+  .has-js .nav-content {
+    border-color: var(--rule);
+    background: var(--white);
+  }
+}
