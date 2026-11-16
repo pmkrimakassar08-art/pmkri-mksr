@@ -843,6 +843,17 @@ details[open] > summary .disclosure-icon::after { visibility: hidden; }
   height: 2px;
   left: calc(0px - var(--cabang) - 2px);
 }
+#beranda {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--header-height) - 1px);
+  min-height: calc(100svh - var(--header-height) - 1px);
+  padding-bottom: 0;
+}
+
+#beranda > .identity-bar {
+  margin-top: auto;
+}
 
 #daftar-pengurus > .board-card:not(.board-card-lead):nth-child(even)::after {
   left: auto;
