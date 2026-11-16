@@ -1,5 +1,73 @@
 "use strict";
 
+const hero = document.querySelector(".hero");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (hero) {
+  const heroBackgroundStyles = document.createElement("style");
+  heroBackgroundStyles.textContent = `
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    .hero::before {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(249, 246, 239, .94), rgba(249, 246, 239, .82));
+      content: "";
+      pointer-events: none;
+    }
+    .hero-video-background {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      overflow: hidden;
+      background: #70404a url("pmkri-makassar.webp") center / cover no-repeat;
+      pointer-events: none;
+    }
+    .hero-video-background iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: max(100%, 177.78vh);
+      height: max(100%, 56.25vw);
+      border: 0;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-layout,
+    .hero > .identity-bar {
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 840px) {
+      .hero::before { background: rgba(249, 246, 239, .9); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero::before { background: rgba(249, 246, 239, .9); }
+    }
+  `;
+  document.head.append(heroBackgroundStyles);
+
+  if (!prefersReducedMotion.matches) {
+    const videoBackground = document.createElement("div");
+    videoBackground.className = "hero-video-background";
+    videoBackground.setAttribute("aria-hidden", "true");
+
+    const videoFrame = document.createElement("iframe");
+    videoFrame.src = "https://www.youtube-nocookie.com/embed/gI_9En-h5qs?autoplay=1&mute=1&controls=0&loop=1&playlist=gI_9En-h5qs&playsinline=1&rel=0&modestbranding=1";
+    videoFrame.title = "Video latar PMKRI Makassar";
+    videoFrame.tabIndex = -1;
+    videoFrame.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
+    videoFrame.setAttribute("loading", "eager");
+    videoFrame.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+    videoBackground.append(videoFrame);
+    hero.prepend(videoBackground);
+  }
+}
+
 const header = document.querySelector(".site-header");
 const menuButton = document.querySelector(".nav-toggle");
 const mobile = window.matchMedia("(max-width: 840px)");
