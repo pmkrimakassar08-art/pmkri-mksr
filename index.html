@@ -229,6 +229,37 @@
     }
   }
 </style>
+<style>
+  html.has-js body:has(#beranda:not([hidden])) > .site-header {
+    position: absolute;
+    inset: 0 0 auto;
+    background: transparent;
+    border-bottom: 0;
+    box-shadow: none;
+  }
+
+  html.has-js body:has(#beranda:not([hidden])) .site-header
+    :is(.brand strong, .brand small, .nav-links a, .nav-toggle, .button-header) {
+    color: #252220;
+  }
+
+  html.has-js body:has(#beranda:not([hidden])) .site-header
+    .nav-links a:is(:hover, [aria-current="page"]) {
+    color: #16643d;
+    background: transparent;
+  }
+
+  html.has-js #beranda > .hero-layout {
+    padding-block-start: calc(var(--header-height, 80px) + 24px);
+  }
+
+  @media (max-width: 840px) {
+    html.has-js body:has(#beranda:not([hidden])) .site-header .nav-content {
+      background: rgba(249, 246, 239, 0.92);
+      border-color: rgba(37, 34, 32, 0.18);
+    }
+  }
+</style>
 </head>
 <body>
   <a class="skip-link" href="#konten">Lewati ke konten</a>
