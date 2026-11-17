@@ -96,11 +96,15 @@ address { font-style: normal; }
 }
 
 .site-header {
-  position: sticky;
+  position: absolute;
   z-index: 20;
   top: 0;
-  border-bottom: 1px solid #804256;
-  background: var(--wine-darker);
+  left: 0;
+  right: 0;
+  border-bottom: none;
+  background: transparent;
+}
+
 }
 
 .navbar {
