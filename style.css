@@ -95,12 +95,14 @@ address { font-style: normal; }
   color: var(--wine);
 }
 
-.site-header {
-  position: sticky;
-  z-index: 20;
-  top: 0;
-  border-bottom: 1px solid #804256;
-  background: var(--wine-darker);
+.site-header .nav-links a,
+.site-header .nav-links a[aria-current="page"] {
+  color: #FFEA00;
+}
+#navigasi .nav-links a {
+  color: #FFFF00; !important;
+}  
+
 }
 
 }
