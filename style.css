@@ -96,13 +96,13 @@ address { font-style: normal; }
 }
 
 .site-header {
-  position: absolute;
+  position: sticky;
   z-index: 20;
   top: 0;
-  left: 0;
-  right: 0;
-  border-bottom: none;
-  background: transparent;
+  border-bottom: 1px solid #804256;
+  background: var(--wine-darker);
+}
+
 }
 
 }
